@@ -1,0 +1,733 @@
+/* ==========================================================================
+   ORBITPAN — TERCEIRA DOBRA: PORTFÓLIO (TIMELINE 3D ULTRA-OTIMIZADA)
+   Design System: Preto Profundo & Azul Aeronáutico (Zero Tons Roxos)
+   Transição: Blur Óptico Profundo Cinematográfico (Padrão de Alta Fidelidade)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Contêiner Principal da Terceira Dobra
+   -------------------------------------------------------------------------- */
+.orbit-portfolio {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: var(--color-base, #06080c);
+  z-index: 5;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  filter: blur(38px) brightness(1.25);
+  transform: scale(0.94);
+  transform-origin: center center;
+  will-change: filter, opacity, transform;
+  transition: 
+    filter 1.6s cubic-bezier(0.43, 0.195, 0.02, 1),
+    opacity 1.5s cubic-bezier(0.43, 0.195, 0.02, 1),
+    transform 1.6s cubic-bezier(0.43, 0.195, 0.02, 1),
+    visibility 1.6s;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Estado Ativo: Nitidez Completa, Revelação de 100% de Opacidade e Escala Normal */
+.orbit-portfolio.is-active {
+  z-index: 25;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  filter: blur(0px) brightness(1);
+  transform: scale(1);
+}
+
+/* Estado de Saída Suave em Blur Óptico */
+.orbit-portfolio.is-exiting {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  filter: blur(38px) brightness(1.25);
+  transform: scale(0.94);
+}
+
+/* Barra de rolagem estilizada e discreta */
+.orbit-portfolio::-webkit-scrollbar {
+  width: 6px;
+}
+
+.orbit-portfolio::-webkit-scrollbar-track {
+  background: rgba(6, 8, 12, 0.8);
+}
+
+.orbit-portfolio::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.25);
+  border-radius: 3px;
+}
+
+.orbit-portfolio::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   2. Cenografia de Fundo (Atmospheric Lighting)
+   -------------------------------------------------------------------------- */
+.portfolio-timeline__bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 20%, rgba(13, 27, 49, 0.45) 0%, rgba(6, 8, 12, 0.95) 60%, #06080c 100%);
+}
+
+.portfolio-timeline__bg .dots-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 1.5px 1.5px, rgba(255, 255, 255, 0.03) 1px, transparent 0);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 85%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 85%);
+}
+
+/* Brilho focal estático no topo (otimizado, sem blur dinâmico) */
+.portfolio-timeline__bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70vw;
+  height: 400px;
+  background: radial-gradient(ellipse at center top, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   3. Header Superior do Portfólio (Navegação & Marca)
+   -------------------------------------------------------------------------- */
+.portfolio-timeline__header-nav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.75rem 2.5rem;
+  z-index: 40;
+  background: linear-gradient(to bottom, rgba(6, 8, 12, 0.85) 0%, rgba(6, 8, 12, 0) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.portfolio-timeline__back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.65rem 1.25rem;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  color: #94a3b8;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portfolio-timeline__back-btn svg {
+  width: 15px;
+  height: 15px;
+  transition: transform 0.3s ease;
+}
+
+.portfolio-timeline__back-btn:hover {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(59, 130, 246, 0.4);
+  color: #ffffff;
+  transform: translateX(-3px);
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.15);
+}
+
+.portfolio-timeline__back-btn:hover svg {
+  transform: translateX(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   4. Estrutura Central da Timeline
+   -------------------------------------------------------------------------- */
+.portfolio-timeline__outer {
+  position: relative;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem 8rem 2rem;
+  z-index: 10;
+}
+
+/* Cabeçalho Editorial da Dobra */
+.portfolio-timeline__headline-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 6rem;
+  position: relative;
+  z-index: 10;
+}
+
+.portfolio-timeline__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1.1rem;
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.22);
+  border-radius: 9999px;
+  color: #60a5fa;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.portfolio-timeline__tag::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #3b82f6;
+  box-shadow: 0 0 8px #3b82f6;
+}
+
+.portfolio-timeline__title {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 300;
+  color: #ffffff;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin: 0 0 1.25rem 0;
+}
+
+.portfolio-timeline__title-accent {
+  background: linear-gradient(135deg, #ffffff 30%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 500;
+}
+
+.portfolio-timeline__subtitle {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: clamp(0.95rem, 1.2vw, 1.125rem);
+  color: #94a3b8;
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 640px;
+  margin: 0;
+}
+
+/* Corpo da Linha e dos Cards */
+.portfolio-timeline__body {
+  position: relative;
+  padding: 2rem 0;
+}
+
+/* Trilho Central da Linha Guia */
+.timeline-v-line {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+  z-index: 2;
+}
+
+/* Progresso Iluminado (Acelerado por Hardware via scaleY) */
+.timeline-v-progress {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #38bdf8 0%, #3b82f6 60%, #1d4ed8 100%);
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+  border-radius: 2px;
+  transform-origin: top center;
+  transform: translateX(-50%) scaleY(0);
+  will-change: transform;
+  z-index: 3;
+}
+
+/* Centelha de Luz na Ponta da Linha */
+.timeline-spark {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow:
+    0 0 8px #ffffff,
+    0 0 18px #38bdf8,
+    0 0 32px #3b82f6;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  z-index: 8;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   5. Item da Timeline (Alternância Esquerda / Direita)
+   -------------------------------------------------------------------------- */
+.timeline-item-wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  margin-bottom: 8rem;
+}
+
+.timeline-item-wrapper:last-child {
+  margin-bottom: 4rem;
+}
+
+/* Ponto Central (Dot) Conector */
+.timeline-v-dot {
+  position: absolute;
+  left: 50%;
+  top: 3.5rem;
+  transform: translate(-50%, -50%) scale(0.7);
+  width: 18px;
+  height: 18px;
+  background: #06080c;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  z-index: 20;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s ease,
+              background-color 0.4s ease,
+              box-shadow 0.4s ease;
+  will-change: transform, border-color, box-shadow;
+}
+
+.timeline-item-wrapper.is-active .timeline-v-dot {
+  border-color: #3b82f6;
+  background: #ffffff;
+  transform: translate(-50%, -50%) scale(1.15);
+  box-shadow:
+    0 0 12px rgba(59, 130, 246, 0.8),
+    0 0 25px rgba(56, 189, 248, 0.4);
+}
+
+/* Conteúdo do Item */
+.timeline-item-content {
+  width: 50%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Alternância Ziguezague */
+.timeline-item-wrapper:nth-child(odd) {
+  justify-content: flex-start;
+}
+
+.timeline-item-wrapper:nth-child(odd) .timeline-item-content {
+  align-items: flex-end;
+  padding-right: 4.5rem;
+}
+
+.timeline-item-wrapper:nth-child(even) {
+  justify-content: flex-end;
+}
+
+.timeline-item-wrapper:nth-child(even) .timeline-item-content {
+  align-items: flex-start;
+  padding-left: 4.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   6. Card 3D de Portfólio (Glassmorphism & Tilt)
+   -------------------------------------------------------------------------- */
+.portfolio-card-3d {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  background: rgba(10, 15, 26, 0.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  cursor: pointer;
+  transition: 
+    border-color 0.35s ease,
+    background-color 0.35s ease,
+    box-shadow 0.35s ease;
+  z-index: 10;
+
+  /* Animação inicial de entrada otimizada (sem blur!) */
+  opacity: 0;
+  transform: translate3d(0, 40px, 0) scale(0.97);
+  will-change: transform, opacity;
+}
+
+/* Entrada revelada por IntersectionObserver */
+.timeline-item-wrapper.is-in-view .portfolio-card-3d {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  transition: 
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+/* Hover e Efeito Flashlight */
+.portfolio-card-3d::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(450px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+              rgba(59, 130, 246, 0.09),
+              transparent 65%);
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-card-3d:hover {
+  border-color: rgba(59, 130, 246, 0.35);
+  background-color: rgba(14, 21, 37, 0.85);
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.65),
+    0 0 25px rgba(59, 130, 246, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+/* Brilho de Fundo do Card (Volumetric Glow Estático) */
+.portfolio-card-glow {
+  position: absolute;
+  inset: -15px;
+  border-radius: 2rem;
+  background: radial-gradient(circle at center, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+  z-index: -1;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+
+.timeline-item-wrapper.is-active .portfolio-card-glow,
+.portfolio-card-3d:hover .portfolio-card-glow {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* --------------------------------------------------------------------------
+   7. Moldura da Imagem de Portfólio (Proporção 16:9 Pronta para Imagem)
+   -------------------------------------------------------------------------- */
+.portfolio-card__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #090d15;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 1.25rem;
+  transform: translateZ(15px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Placeholder elegante e técnico para receber fotos de aviação */
+.portfolio-card__placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(9, 14, 24, 0.9) 100%);
+  color: #64748b;
+  transition: all 0.4s ease;
+}
+
+.portfolio-card__placeholder-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #60a5fa;
+  transition: all 0.4s ease;
+}
+
+.portfolio-card__placeholder-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.portfolio-card__placeholder-text {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.portfolio-card-3d:hover .portfolio-card__placeholder-icon {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.5);
+  color: #ffffff;
+  transform: scale(1.08);
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.4);
+}
+
+/* Tag de Categoria & Índice no Card */
+.portfolio-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transform: translateZ(20px);
+}
+
+.portfolio-card__tag {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #38bdf8;
+}
+
+.portfolio-card__index {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.05em;
+}
+
+/* Indicador de Hover */
+.portfolio-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #94a3b8;
+  transition: color 0.3s ease;
+}
+
+.portfolio-card-3d:hover .portfolio-card__cta {
+  color: #ffffff;
+}
+
+.portfolio-card__cta svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.3s ease;
+}
+
+.portfolio-card-3d:hover .portfolio-card__cta svg {
+  transform: translateX(3px);
+  color: #60a5fa;
+}
+
+/* Tipografia de Número Gigante de Fundo (Year/Index Parallax Style) */
+.timeline-v-index {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: clamp(4.5rem, 9vw, 8rem);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.015);
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.04);
+  line-height: 0.8;
+  letter-spacing: -0.02em;
+  pointer-events: none;
+  z-index: 1;
+  will-change: transform, color;
+  transition: color 0.8s ease, -webkit-text-stroke 0.8s ease;
+}
+
+.timeline-item-wrapper.is-active .timeline-v-index {
+  color: rgba(59, 130, 246, 0.025);
+  -webkit-text-stroke: 1px rgba(59, 130, 246, 0.16);
+}
+
+.timeline-item-wrapper:nth-child(odd) .timeline-v-index {
+  left: calc(100% + 3.5rem);
+}
+
+.timeline-item-wrapper:nth-child(even) .timeline-v-index {
+  right: calc(100% + 3.5rem);
+}
+
+/* --------------------------------------------------------------------------
+   8. Rodapé da Linha do Tempo & Botão para a Quarta Dobra
+   -------------------------------------------------------------------------- */
+.portfolio-timeline__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem 3rem 1rem;
+  position: relative;
+  z-index: 10;
+}
+
+.portfolio-timeline__footer-cue {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 1.25rem;
+}
+
+/* Botão de Transição para Depoimentos (Integrado com scene-transition.js) */
+.orbit-btn-testimonials {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1rem 2.25rem;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  border-radius: 9999px;
+  color: #ffffff;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.orbit-btn-testimonials__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  transition: all 0.3s ease;
+}
+
+.orbit-btn-testimonials__icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.orbit-btn-testimonials:hover {
+  background: rgba(30, 58, 138, 0.5);
+  border-color: rgba(96, 165, 250, 0.6);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 35px rgba(59, 130, 246, 0.25);
+}
+
+.orbit-btn-testimonials:hover .orbit-btn-testimonials__icon {
+  background: #3b82f6;
+  color: #ffffff;
+  transform: translateX(3px);
+}
+
+/* --------------------------------------------------------------------------
+   9. Responsividade Inteligente (Mobile & Tablets)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .portfolio-timeline__outer {
+    padding: 1rem 1.25rem 6rem 1.25rem;
+  }
+
+  .portfolio-timeline__header-nav {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .portfolio-timeline__headline-wrap {
+    margin-bottom: 4rem;
+  }
+
+  /* Linha deslocada para a margem esquerda no mobile */
+  .timeline-v-line,
+  .timeline-v-progress {
+    left: 1.5rem;
+    transform: none;
+  }
+
+  .timeline-v-progress {
+    transform: scaleY(0);
+  }
+
+  .timeline-spark {
+    left: 1.5rem;
+    transform: translate(-50%, -50%);
+  }
+
+  .timeline-v-dot {
+    left: 1.5rem;
+    top: 2.5rem;
+    transform: translate(-50%, -50%) scale(0.65);
+  }
+
+  .timeline-item-wrapper.is-active .timeline-v-dot {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+
+  /* Conteúdo 100% de largura alinhado à direita da linha */
+  .timeline-item-content {
+    width: 100% !important;
+    padding-left: 3.5rem !important;
+    padding-right: 0 !important;
+    align-items: flex-start !important;
+  }
+
+  .timeline-item-wrapper {
+    margin-bottom: 5rem;
+  }
+
+  .portfolio-card-3d {
+    max-width: 100%;
+    padding: 1.25rem;
+  }
+
+  /* Número de fundo posicionado acima do card no mobile */
+  .timeline-v-index {
+    top: -2.5rem;
+    left: 3.5rem !important;
+    right: auto !important;
+    transform: none !important;
+    font-size: 3.8rem;
+  }
+}

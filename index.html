@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+  <title>Orbitpan — Tours Virtuais Imersivos para Aviação Executiva e Hangares</title>
+  <meta name="description"
+    content="Apresente hangares, frotas de jatos executivos e instalações aeronáuticas com a fidelidade e precisão de um tour virtual panorâmico imersivo em 360°.">
+  <meta name="theme-color" content="#06080c">
+
+  <!-- Fontes Oficiais (Local com Fallback Seguro) -->
+  <link rel="stylesheet" href="./assets/css/fonts.css">
+
+  <!-- Estilos da Hero & Design System -->
+  <link rel="stylesheet" href="./assets/css/hero.css">
+
+  <!-- Estilos da Segunda Dobra: Apresentação Imersiva 360° da Empresa -->
+  <link rel="stylesheet" href="./assets/css/company-explorer.css?v=3">
+
+  <!-- Estilos da Terceira Dobra: Linha do Tempo de Portfólio 3D -->
+  <link rel="stylesheet" href="./assets/css/portfolio-timeline.css?v=3">
+
+  <!-- Carrossel Infinito de Projetos & Trajetória (Logos) -->
+  <link rel="stylesheet" href="./assets/css/portfolio-marquee.css">
+
+  <!-- Estilos da Quarta Dobra: Depoimentos & Carrossel Infinito -->
+  <link rel="stylesheet" href="./assets/css/testimonials.css">
+
+  <!-- Estilos da Quinta Dobra: FAQ & Diretrizes Técnicas -->
+  <link rel="stylesheet" href="./assets/css/faq.css?v=2">
+
+  <!-- Estilos do Rodapé Institucional (Footer Master) -->
+  <link rel="stylesheet" href="./assets/css/footer.css?v=2">
+
+  <!-- Botão Flutuante de WhatsApp (Aparece a partir da 2ª dobra) -->
+  <link rel="stylesheet" href="./assets/css/whatsapp-button.css">
+
+  <!-- Retículo Aeronáutico: Custom Cursor (Experimento Reversível) -->
+  <link rel="stylesheet" href="./assets/css/custom-cursor.css">
+
+  <!-- Barra Superior de Exploração do Site (Progresso Global) -->
+  <link rel="stylesheet" href="./assets/css/exploration-progress.css">
+</head>
+
+<body>
+
+  <!-- HERO SECTION PRINCIPAL DA ORBITPAN -->
+  <section class="orbit-hero" id="orbit-hero" aria-label="Experiência Interativa 360° do Hangar"
+    data-panorama-src="./assets/images/hangar-panorama-4k.jpg" data-pan-yaw-limit="10" data-pan-pitch-limit="2.5"
+    data-pan-initial-yaw="85" data-pan-initial-pitch="-2" data-pan-fov="66" data-pan-lock-rotation="true">
+    <!-- Scrim Cinematográfico Localizado (Garante Contraste e Legibilidade WCAG) -->
+    <div class="orbit-hero__scrim" aria-hidden="true"></div>
+
+    <!-- Header Minimalista com Identidade da Marca -->
+    <header class="orbit-header" role="banner" data-animate="1">
+      <a href="./" class="orbit-brand" aria-label="Orbitpan — Página Inicial">
+        <div class="orbit-brand__symbol" aria-hidden="true">
+          <!-- Monograma de Precisão Aeronáutica e Giroscópio 360° -->
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="18" cy="18" rx="15" ry="6" transform="rotate(-25 18 18)" stroke="currentColor"
+              stroke-width="1.6" stroke-dasharray="3 1.5" />
+            <polygon points="18,6 26,24 18,20 10,24" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"
+              fill="none" />
+            <circle cx="18" cy="18" r="2.2" fill="var(--color-accent-blue)" />
+          </svg>
+        </div>
+        <div class="orbit-brand__meta">
+          <span class="orbit-brand__title">Orbitpan</span>
+          <span class="orbit-brand__subtitle">Aviation Virtual Spaces</span>
+        </div>
+      </a>
+
+      <!-- Ação Direta no Header (Botão Estilo CTA Outline) -->
+      <a href="#contato" class="orbit-header__action" id="orbit-contact-link">
+        <span>Solicitar Visita</span>
+        <span class="orbit-btn-cta__icon" aria-hidden="true">
+          <svg viewBox="0 0 16 16" fill="none">
+            <path d="M2 8H13.5M9 3.5L13.5 8L9 12.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </span>
+      </a>
+    </header>
+
+    <!-- Conteúdo Principal da Hero (Composição Editorial Assimétrica) -->
+    <div class="orbit-hero__content">
+
+      <!-- Coluna Primária: Mensagem e Ação Principal -->
+      <div class="orbit-hero__primary">
+
+        <!-- Headline Editorial de Alta Escala -->
+        <h1 class="orbit-headline" data-animate="1">
+          <span class="orbit-headline__line">A presença real</span>
+          <span class="orbit-headline__line orbit-headline__accent">do seu hangar.</span>
+        </h1>
+
+        <!-- Texto Complementar Orientado a Valor Comercial -->
+        <p class="orbit-description" data-animate="3">
+          Apresente instalações aeronáuticas e frotas executivas a clientes remotos com a fidelidade de uma visita
+          presencial. Escala verdadeira, iluminação natural e precisão em cada detalhe.
+        </p>
+
+        <!-- Grupo de Ação Principal -->
+        <div class="orbit-actions" data-animate="4">
+          <a href="#empresa" class="orbit-btn-cta" id="orbit-cta-button">
+            <span>Iniciar Tour Virtual</span>
+            <span class="orbit-btn-cta__icon" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none">
+                <path d="M2 8H13.5M9 3.5L13.5 8L9 12.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Coluna Secundária: Telemetria da Bússola 360° (HUD Inferior Direito) -->
+    <div class="orbit-hero__secondary" data-animate="5">
+
+      <!-- Indicador HUD: Bússola Giroscópica Sincronizada -->
+      <div class="orbit-compass" aria-label="Orientação da Câmera em Tempo Real">
+        <div class="orbit-compass__dial" id="orbit-compass-dial" aria-hidden="true">
+          <div class="orbit-compass__needle"></div>
+        </div>
+        <div class="orbit-compass__info">
+          <span class="orbit-compass__heading" id="orbit-compass-heading">HDG 085°</span>
+          <span class="orbit-compass__tip">Panorama Ativo</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SEGUNDA DOBRA: APRESENTAÇÃO IMERSIVA 360° DA EMPRESA (HORIZONTE GUIA & WAYPOINTS) -->
+  <section class="orbit-explorer" id="empresa" aria-label="Apresentação Imersiva 360° da Orbitpan">
+    <!-- Camada 1: Renderizador WebGL Three.js da Cena 360° -->
+    <div class="orbit-explorer__canvas-wrap" id="orbit-company-canvas-wrap">
+      <canvas id="webgl-company-panorama"></canvas>
+    </div>
+
+    <!-- Scrim Cinematográfico para Fidelidade e Contraste Óptico -->
+    <div class="orbit-explorer__scrim" aria-hidden="true"></div>
+
+    <!-- Navegação Superior com Identidade da Empresa -->
+    <div class="orbit-explorer__top-nav">
+      <a href="./" class="orbit-brand" id="explorer-brand-logo" aria-label="Orbitpan — Voltar ao Início">
+        <div class="orbit-brand__symbol" aria-hidden="true">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="18" cy="18" rx="15" ry="6" transform="rotate(-25 18 18)" stroke="currentColor"
+              stroke-width="1.6" stroke-dasharray="3 1.5" />
+            <polygon points="18,6 26,24 18,20 10,24" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"
+              fill="none" />
+            <circle cx="18" cy="18" r="2.2" fill="var(--color-accent-blue)" />
+          </svg>
+        </div>
+        <div class="orbit-brand__meta">
+          <span class="orbit-brand__title">Orbitpan</span>
+          <span class="orbit-brand__subtitle">Aviation Virtual Spaces</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Camada 2: HUD Central (Linha Horizontal Guia de 1px em Y=50% e Cursor) -->
+    <div class="orbit-explorer__hud">
+      <!-- Linha horizontal contínua de 1px cortando toda a viewport no centro Y -->
+      <div class="orbit-explorer__line" id="explorer-line"></div>
+
+      <!-- Ancoragem Inicial do Título e Indicador Circular com Seta -->
+      <div class="orbit-explorer__anchor" id="explorer-anchor">
+        <div class="orbit-explorer__title-wrap">
+          <span class="orbit-explorer__badge">Conheça a Orbitpan</span>
+          <h2 class="orbit-explorer__title">
+            <span>Arraste para</span>
+            <span>a esquerda</span>
+          </h2>
+        </div>
+
+        <!-- Indicador circular sobre a linha com seta sugerindo rotação -->
+        <div class="orbit-explorer__cursor" id="explorer-cursor" role="button"
+          aria-label="Girar panorama horizontalmente para explorar a empresa" tabindex="0">
+          <svg viewBox="0 0 48 48" class="cursor-ring" aria-hidden="true">
+            <circle cx="24" cy="24" r="22" />
+          </svg>
+          <div class="cursor-arrows" aria-hidden="true">
+            <span class="arrow-hint arrow-hint--left">‹</span>
+            <span class="arrow-hint arrow-hint--active arrow-hint--right">›</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Camada 3: Timeline e Blocos Informativos Projetados ao Longo dos 360° -->
+    <div class="orbit-explorer__timeline" id="explorer-timeline">
+      <div class="orbit-explorer__track" id="explorer-track">
+
+        <!-- Bloco 01 (Acima da Linha) -->
+        <article class="orbit-card-waypoint" data-angle="70" id="waypoint-1">
+          <div class="orbit-card-waypoint__dot" aria-hidden="true"></div>
+          <div class="orbit-card-waypoint__content orbit-card-waypoint__content--top">
+            <span class="orbit-card-waypoint__step">Capítulo 01 / Origem</span>
+            <h3 class="orbit-card-waypoint__heading">Quem Somos</h3>
+            <p class="orbit-card-waypoint__text">
+              A Orbitpan transforma a apresentação de aeronaves e estruturas aeronáuticas com tours virtuais imersivos,
+              atendendo fabricantes, hangares, FBOs, operadores e empresas do setor aeronáutico.
+            </p>
+          </div>
+        </article>
+
+        <!-- Bloco 02 (Abaixo da Linha) -->
+        <article class="orbit-card-waypoint" data-angle="140" id="waypoint-2">
+          <div class="orbit-card-waypoint__dot" aria-hidden="true"></div>
+          <div class="orbit-card-waypoint__content orbit-card-waypoint__content--bottom">
+            <span class="orbit-card-waypoint__step">Capítulo 02 / Tecnologia</span>
+            <h3 class="orbit-card-waypoint__heading">Experiência</h3>
+            <p class="orbit-card-waypoint__text">
+              Tours virtuais de alta fidelidade que apresentam aeronaves, cabines e hangares com realismo e precisão,
+              aumentando o engajamento, fortalecendo negociações e acelerando a tomada de decisão.
+            </p>
+          </div>
+        </article>
+
+        <!-- Bloco 03 (Acima da Linha) -->
+        <article class="orbit-card-waypoint" data-angle="210" id="waypoint-3">
+          <div class="orbit-card-waypoint__dot" aria-hidden="true"></div>
+          <div class="orbit-card-waypoint__content orbit-card-waypoint__content--top">
+            <span class="orbit-card-waypoint__step">Capítulo 03 / Experiência</span>
+            <h3 class="orbit-card-waypoint__heading">Diferencial</h3>
+            <p class="orbit-card-waypoint__text">
+              Apresente aeronaves em 360° com realismo e detalhes técnicos. Permita que clientes explorem cabines,
+              conforto e configurações sem deslocamentos, otimizando o tempo e ampliando as conversões comerciais.
+            </p>
+          </div>
+        </article>
+
+        <!-- Bloco 04 (Abaixo da Linha) -->
+        <article class="orbit-card-waypoint" data-angle="280" id="waypoint-4">
+          <div class="orbit-card-waypoint__dot" aria-hidden="true"></div>
+          <div class="orbit-card-waypoint__content orbit-card-waypoint__content--bottom">
+            <span class="orbit-card-waypoint__step">Capítulo 04 / Impacto Comercial</span>
+            <h3 class="orbit-card-waypoint__heading">Sustentabilidade</h3>
+            <p class="orbit-card-waypoint__text">
+              Tours virtuais reduzem deslocamentos, emissões de carbono e materiais impressos. Em 2025, a Orbitpan
+              tornou-se a primeira empresa do setor signatária do movimento ODS em SC, reforçando seu compromisso com a
+              inovação sustentável.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       TERCEIRA DOBRA: PORTFÓLIO (LINHA DO TEMPO 3D ULTRA-OTIMIZADA)
+       ========================================================================== -->
+  <section class="orbit-portfolio" id="portfolio" aria-label="Galeria de Portfólio Orbitpan">
+    <!-- Cenografia Atmosférica de Fundo -->
+    <div class="portfolio-timeline__bg" aria-hidden="true">
+      <div class="dots-grid"></div>
+    </div>
+
+    <!-- Navegação Superior com Retorno à Empresa e Identidade da Marca -->
+    <header class="portfolio-timeline__header-nav">
+      <button type="button" class="portfolio-timeline__back-btn" id="portfolio-back-btn"
+        aria-label="Voltar para a Visão da Empresa">
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        <span>Visão da Empresa</span>
+      </button>
+
+      <a href="./" class="orbit-brand" id="portfolio-brand-logo" aria-label="Orbitpan — Página Inicial">
+        <div class="orbit-brand__symbol" aria-hidden="true">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="18" cy="18" rx="15" ry="6" transform="rotate(-25 18 18)" stroke="currentColor"
+              stroke-width="1.6" stroke-dasharray="3 1.5" />
+            <polygon points="18,6 26,24 18,20 10,24" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"
+              fill="none" />
+            <circle cx="18" cy="18" r="2.2" fill="var(--color-accent-blue)" />
+          </svg>
+        </div>
+        <div class="orbit-brand__meta">
+          <span class="orbit-brand__title">Orbitpan</span>
+          <span class="orbit-brand__subtitle">Aviation Virtual Spaces</span>
+        </div>
+      </a>
+    </header>
+
+    <!-- Estrutura Principal da Linha do Tempo de Portfólio -->
+    <div class="portfolio-timeline__outer">
+
+      <!-- Cabeçalho Editorial -->
+      <div class="portfolio-timeline__headline-wrap">
+        <span class="portfolio-timeline__tag">Portfólio &amp; Espaços Aéreos</span>
+        <h2 class="portfolio-timeline__title">
+          Projetos de <span class="portfolio-timeline__title-accent">Alta Fidelidade</span>
+        </h2>
+        <p class="portfolio-timeline__subtitle">
+          Ambientes aeronáuticos e frotas executivas digitalizados em precisão milimétrica e perspectiva imersiva 360°.
+        </p>
+      </div>
+
+      <!-- Trilho Central e Cards Alternados -->
+      <div class="portfolio-timeline__body">
+        <!-- Trilho Base e Linha Condutora com Centelha de Luz -->
+        <div class="timeline-v-line" aria-hidden="true"></div>
+        <div class="timeline-v-progress" aria-hidden="true"></div>
+        <div class="timeline-spark" aria-hidden="true"></div>
+
+        <!-- CARD 01 (Esquerda) -->
+        <div class="timeline-item-wrapper" data-index="1">
+          <div class="timeline-v-dot" aria-hidden="true"></div>
+          <span class="timeline-v-index" aria-hidden="true">01</span>
+          <div class="timeline-item-content">
+            <article class="portfolio-card-3d" tabindex="0" aria-label="Projeto 01: Hangar Executivo Principal">
+              <div class="portfolio-card-glow" aria-hidden="true"></div>
+              <div class="portfolio-card__frame">
+                <div class="portfolio-card__placeholder">
+                  <div class="portfolio-card__placeholder-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                      <rect x="3" y="3" width="18" height="18" rx="2" stroke-linecap="round" />
+                      <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
+                      <path d="M21 15l-5-5L5 21" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                  <span class="portfolio-card__placeholder-text">Espaço para Imagem</span>
+                </div>
+              </div>
+              <div class="portfolio-card__meta">
+                <span class="portfolio-card__tag">Hangar Executivo Master</span>
+                <span class="portfolio-card__index">01 / 06</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- CARD 02 (Direita) -->
+        <div class="timeline-item-wrapper" data-index="2">
+          <div class="timeline-v-dot" aria-hidden="true"></div>
+          <span class="timeline-v-index" aria-hidden="true">02</span>
+          <div class="timeline-item-content">
+            <article class="portfolio-card-3d" tabindex="0" aria-label="Projeto 02: Frota Corporativa de Longo Alcance">
+              <div class="portfolio-card-glow" aria-hidden="true"></div>
+              <div class="portfolio-card__frame">
+                <div class="portfolio-card__placeholder">
+                  <div class="portfolio-card__placeholder-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                      <rect x="3" y="3" width="18" height="18" rx="2" stroke-linecap="round" />
+                      <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
+                      <path d="M21 15l-5-5L5 21" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                  <span class="portfolio-card__placeholder-text">Espaço para Imagem</span>
+                </div>
+              </div>
+              <div class="portfolio-card__meta">
+                <span class="portfolio-card__tag">Cabine VIP &amp; Interior</span>
+                <span class="portfolio-card__index">02 / 06</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- CARD 03 (Esquerda) -->
+        <div class="timeline-item-wrapper" data-index="3">
+          <div class="timeline-v-dot" aria-hidden="true"></div>
+          <span class="timeline-v-index" aria-hidden="true">03</span>
+          <div class="timeline-item-content">
+            <article class="portfolio-card-3d" tabindex="0" aria-label="Projeto 03: Terminal FBO &amp; Sala VIP">
+              <div class="portfolio-card-glow" aria-hidden="true"></div>
+              <div class="portfolio-card__frame">
+                <div class="portfolio-card__placeholder">
+                  <div class="portfolio-card__placeholder-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                      <rect x="3" y="3" width="18" height="18" rx="2" stroke-linecap="round" />
+                      <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
+                      <path d="M21 15l-5-5L5 21" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                  <span class="portfolio-card__placeholder-text">Espaço para Imagem</span>
+                </div>
+              </div>
+              <div class="portfolio-card__meta">
+                <span class="portfolio-card__tag">Terminal FBO &amp; Lounge</span>
+                <span class="portfolio-card__index">03 / 06</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- CARD 04 (Direita) -->
+        <div class="timeline-item-wrapper" data-index="4">
+          <div class="timeline-v-dot" aria-hidden="true"></div>
+          <span class="timeline-v-index" aria-hidden="true">04</span>
+          <div class="timeline-item-content">
+            <article class="portfolio-card-3d" tabindex="0" aria-label="Projeto 04: Centro Técnico MRO">
+              <div class="portfolio-card-glow" aria-hidden="true"></div>
+              <div class="portfolio-card__frame">
+                <div class="portfolio-card__placeholder">
+                  <div class="portfolio-card__placeholder-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                      <rect x="3" y="3" width="18" height="18" rx="2" stroke-linecap="round" />
+                      <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
+                      <path d="M21 15l-5-5L5 21" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                  <span class="portfolio-card__placeholder-text">Espaço para Imagem</span>
+                </div>
+              </div>
+              <div class="portfolio-card__meta">
+                <span class="portfolio-card__tag">Oficina Técnica MRO</span>
+                <span class="portfolio-card__index">04 / 06</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- CARD 05 (Esquerda) -->
+        <div class="timeline-item-wrapper" data-index="5">
+          <div class="timeline-v-dot" aria-hidden="true"></div>
+          <span class="timeline-v-index" aria-hidden="true">05</span>
+          <div class="timeline-item-content">
+            <article class="portfolio-card-3d" tabindex="0" aria-label="Projeto 05: Showroom Aeronáutico &amp; Vendas">
+              <div class="portfolio-card-glow" aria-hidden="true"></div>
+              <div class="portfolio-card__frame">
+                <div class="portfolio-card__placeholder">
+                  <div class="portfolio-card__placeholder-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                      <rect x="3" y="3" width="18" height="18" rx="2" stroke-linecap="round" />
+                      <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
+                      <path d="M21 15l-5-5L5 21" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                  <span class="portfolio-card__placeholder-text">Espaço para Imagem</span>
+                </div>
+              </div>
+              <div class="portfolio-card__meta">
+                <span class="portfolio-card__tag">Showroom Comercial</span>
+                <span class="portfolio-card__index">05 / 06</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- CARD 06 (Direita) -->
+        <div class="timeline-item-wrapper" data-index="6">
+          <div class="timeline-v-dot" aria-hidden="true"></div>
+          <span class="timeline-v-index" aria-hidden="true">06</span>
+          <div class="timeline-item-content">
+            <article class="portfolio-card-3d" tabindex="0" aria-label="Projeto 06: Heliponto Corporativo &amp; Pátio">
+              <div class="portfolio-card-glow" aria-hidden="true"></div>
+              <div class="portfolio-card__frame">
+                <div class="portfolio-card__placeholder">
+                  <div class="portfolio-card__placeholder-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                      <rect x="3" y="3" width="18" height="18" rx="2" stroke-linecap="round" />
+                      <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
+                      <path d="M21 15l-5-5L5 21" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                  <span class="portfolio-card__placeholder-text">Espaço para Imagem</span>
+                </div>
+              </div>
+              <div class="portfolio-card__meta">
+                <span class="portfolio-card__tag">Heliponto &amp; Pátio de Manobra</span>
+                <span class="portfolio-card__index">06 / 06</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Rodapé da Seção com Navegação para a Quarta Dobra -->
+      <footer class="portfolio-timeline__footer">
+        <span class="portfolio-timeline__footer-cue">Avançar para a Próxima Dobra</span>
+        <button type="button" class="orbit-btn-testimonials" id="portfolio-testimonials-btn"
+          aria-label="Avançar para Depoimentos">
+          <span>Ver Depoimentos &amp; Chancela</span>
+          <span class="orbit-btn-testimonials__icon" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none">
+              <path d="M2 8H13.5M9 3.5L13.5 8L9 12.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </span>
+        </button>
+
+        <!-- ====================================================================
+             [OPÇÃO 2] CARROSSEL INFINITO DE LOGOS (ABAIXO DO BOTÃO)
+             ==================================================================== -->
+        <section class="pf-marquee-block" id="portfolio-marquee-block" aria-label="Trajetória e Empresas Parceiras">
+          <!-- Kicker Superior com Traço Editorial -->
+          <div class="pf-marquee-kicker">
+            <span class="pf-marquee-kicker__dash" aria-hidden="true">—</span>
+            <span class="pf-marquee-kicker__text">PROJETOS E TRAJETÓRIA</span>
+          </div>
+
+          <!-- Trilho Infinito com Máscara Suave de Transição -->
+          <div class="pf-marquee-rail" aria-label="Carrossel contínuo de clientes e marcas atendidas">
+            <div class="pf-marquee-track">
+              
+              <!-- GRUPO 01 (Principal) -->
+              <div class="pf-marquee-group">
+                <!-- IEG Brasil -->
+                <div class="pf-marquee-logo" title="IEG Brasil">
+                  <svg viewBox="0 0 160 50" aria-label="IEG Brasil">
+                    <path d="M22 6 L48 44 M48 6 L22 44" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.85" />
+                    <text x="10" y="30" font-family="'Oswald', sans-serif" font-weight="700" font-size="26" letter-spacing="0.05em">IEG</text>
+                    <text x="26" y="44" font-family="'Avenir', sans-serif" font-weight="700" font-size="8.5" letter-spacing="0.28em">BRASIL</text>
+                  </svg>
+                </div>
+
+                <!-- Nutri in Rio -->
+                <div class="pf-marquee-logo" title="Nutri in Rio">
+                  <svg viewBox="0 0 220 54" aria-label="Nutri in Rio">
+                    <g transform="translate(28, 27)" opacity="0.9">
+                      <circle cx="0" cy="0" r="4.5" fill="none" stroke="currentColor" stroke-width="2" />
+                      <path d="M0 -7 C-3 -15, 3 -15, 0 -7 Z" fill="currentColor" />
+                      <path d="M0 7 C-3 15, 3 15, 0 7 Z" fill="currentColor" />
+                      <path d="M-7 0 C-15 -3, -15 3, -7 0 Z" fill="currentColor" />
+                      <path d="M7 0 C15 -3, 15 3, 7 0 Z" fill="currentColor" />
+                      <path d="M-5 -5 C-11 -11, -6 -13, -5 -5 Z" fill="currentColor" />
+                      <path d="M5 5 C11 11, 6 13, 5 5 Z" fill="currentColor" />
+                      <path d="M-5 5 C-11 11, -13 6, -5 5 Z" fill="currentColor" />
+                      <path d="M5 -5 C11 -11, 13 -6, 5 -5 Z" fill="currentColor" />
+                    </g>
+                    <text x="60" y="21" font-family="'Oswald', sans-serif" font-weight="700" font-size="18" letter-spacing="0.06em">NUTRI</text>
+                    <text x="60" y="37" font-family="'Oswald', sans-serif" font-weight="700" font-size="18" letter-spacing="0.06em">IN RIO</text>
+                    <text x="60" y="48" font-family="'Avenir', sans-serif" font-weight="400" font-size="7.5" letter-spacing="0.05em" opacity="0.8">Saúde e Bem-estar</text>
+                  </svg>
+                </div>
+
+                <!-- NEEX -->
+                <div class="pf-marquee-logo" title="NEEX">
+                  <svg viewBox="0 0 160 50" aria-label="NEEX">
+                    <text x="10" y="38" font-family="'Oswald', sans-serif" font-weight="800" font-style="italic" font-size="44" letter-spacing="0.02em" transform="skewX(-8)">NEEX</text>
+                  </svg>
+                </div>
+
+                <!-- Brasil Trading Fitness Fair (BTFF) -->
+                <div class="pf-marquee-logo" title="Brasil Trading Fitness Fair">
+                  <svg viewBox="0 0 170 54" aria-label="Brasil Trading Fitness Fair">
+                    <text x="85" y="14" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="800" font-size="14" letter-spacing="0.14em">BRASIL</text>
+                    <text x="85" y="26" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="700" font-size="10.5" letter-spacing="0.22em" opacity="0.9">TRADING</text>
+                    <text x="85" y="38" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="800" font-size="13" letter-spacing="0.16em">FITNESS</text>
+                    <text x="85" y="49" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="700" font-size="9" letter-spacing="0.32em" opacity="0.85">FAIR</text>
+                  </svg>
+                </div>
+
+                <!-- IEG Brasil (Ciclo 2) -->
+                <div class="pf-marquee-logo" title="IEG Brasil">
+                  <svg viewBox="0 0 160 50" aria-label="IEG Brasil">
+                    <path d="M22 6 L48 44 M48 6 L22 44" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.85" />
+                    <text x="10" y="30" font-family="'Oswald', sans-serif" font-weight="700" font-size="26" letter-spacing="0.05em">IEG</text>
+                    <text x="26" y="44" font-family="'Avenir', sans-serif" font-weight="700" font-size="8.5" letter-spacing="0.28em">BRASIL</text>
+                  </svg>
+                </div>
+
+                <!-- Nutri in Rio (Ciclo 2) -->
+                <div class="pf-marquee-logo" title="Nutri in Rio">
+                  <svg viewBox="0 0 220 54" aria-label="Nutri in Rio">
+                    <g transform="translate(28, 27)" opacity="0.9">
+                      <circle cx="0" cy="0" r="4.5" fill="none" stroke="currentColor" stroke-width="2" />
+                      <path d="M0 -7 C-3 -15, 3 -15, 0 -7 Z" fill="currentColor" />
+                      <path d="M0 7 C-3 15, 3 15, 0 7 Z" fill="currentColor" />
+                      <path d="M-7 0 C-15 -3, -15 3, -7 0 Z" fill="currentColor" />
+                      <path d="M7 0 C15 -3, 15 3, 7 0 Z" fill="currentColor" />
+                      <path d="M-5 -5 C-11 -11, -6 -13, -5 -5 Z" fill="currentColor" />
+                      <path d="M5 5 C11 11, 6 13, 5 5 Z" fill="currentColor" />
+                      <path d="M-5 5 C-11 11, -13 6, -5 5 Z" fill="currentColor" />
+                      <path d="M5 -5 C11 -11, 13 -6, 5 -5 Z" fill="currentColor" />
+                    </g>
+                    <text x="60" y="21" font-family="'Oswald', sans-serif" font-weight="700" font-size="18" letter-spacing="0.06em">NUTRI</text>
+                    <text x="60" y="37" font-family="'Oswald', sans-serif" font-weight="700" font-size="18" letter-spacing="0.06em">IN RIO</text>
+                    <text x="60" y="48" font-family="'Avenir', sans-serif" font-weight="400" font-size="7.5" letter-spacing="0.05em" opacity="0.8">Saúde e Bem-estar</text>
+                  </svg>
+                </div>
+
+                <!-- NEEX (Ciclo 2) -->
+                <div class="pf-marquee-logo" title="NEEX">
+                  <svg viewBox="0 0 160 50" aria-label="NEEX">
+                    <text x="10" y="38" font-family="'Oswald', sans-serif" font-weight="800" font-style="italic" font-size="44" letter-spacing="0.02em" transform="skewX(-8)">NEEX</text>
+                  </svg>
+                </div>
+
+                <!-- Brasil Trading Fitness Fair (Ciclo 2) -->
+                <div class="pf-marquee-logo" title="Brasil Trading Fitness Fair">
+                  <svg viewBox="0 0 170 54" aria-label="Brasil Trading Fitness Fair">
+                    <text x="85" y="14" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="800" font-size="14" letter-spacing="0.14em">BRASIL</text>
+                    <text x="85" y="26" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="700" font-size="10.5" letter-spacing="0.22em" opacity="0.9">TRADING</text>
+                    <text x="85" y="38" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="800" font-size="13" letter-spacing="0.16em">FITNESS</text>
+                    <text x="85" y="49" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="700" font-size="9" letter-spacing="0.32em" opacity="0.85">FAIR</text>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- GRUPO 02 (Duplicata Exata para Loop Infinito Contínuo) -->
+              <div class="pf-marquee-group" aria-hidden="true">
+                <!-- IEG Brasil -->
+                <div class="pf-marquee-logo" title="IEG Brasil">
+                  <svg viewBox="0 0 160 50">
+                    <path d="M22 6 L48 44 M48 6 L22 44" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.85" />
+                    <text x="10" y="30" font-family="'Oswald', sans-serif" font-weight="700" font-size="26" letter-spacing="0.05em">IEG</text>
+                    <text x="26" y="44" font-family="'Avenir', sans-serif" font-weight="700" font-size="8.5" letter-spacing="0.28em">BRASIL</text>
+                  </svg>
+                </div>
+
+                <!-- Nutri in Rio -->
+                <div class="pf-marquee-logo" title="Nutri in Rio">
+                  <svg viewBox="0 0 220 54">
+                    <g transform="translate(28, 27)" opacity="0.9">
+                      <circle cx="0" cy="0" r="4.5" fill="none" stroke="currentColor" stroke-width="2" />
+                      <path d="M0 -7 C-3 -15, 3 -15, 0 -7 Z" fill="currentColor" />
+                      <path d="M0 7 C-3 15, 3 15, 0 7 Z" fill="currentColor" />
+                      <path d="M-7 0 C-15 -3, -15 3, -7 0 Z" fill="currentColor" />
+                      <path d="M7 0 C15 -3, 15 3, 7 0 Z" fill="currentColor" />
+                      <path d="M-5 -5 C-11 -11, -6 -13, -5 -5 Z" fill="currentColor" />
+                      <path d="M5 5 C11 11, 6 13, 5 5 Z" fill="currentColor" />
+                      <path d="M-5 5 C-11 11, -13 6, -5 5 Z" fill="currentColor" />
+                      <path d="M5 -5 C11 -11, 13 -6, 5 -5 Z" fill="currentColor" />
+                    </g>
+                    <text x="60" y="21" font-family="'Oswald', sans-serif" font-weight="700" font-size="18" letter-spacing="0.06em">NUTRI</text>
+                    <text x="60" y="37" font-family="'Oswald', sans-serif" font-weight="700" font-size="18" letter-spacing="0.06em">IN RIO</text>
+                    <text x="60" y="48" font-family="'Avenir', sans-serif" font-weight="400" font-size="7.5" letter-spacing="0.05em" opacity="0.8">Saúde e Bem-estar</text>
+                  </svg>
+                </div>
+
+                <!-- NEEX -->
+                <div class="pf-marquee-logo" title="NEEX">
+                  <svg viewBox="0 0 160 50">
+                    <text x="10" y="38" font-family="'Oswald', sans-serif" font-weight="800" font-style="italic" font-size="44" letter-spacing="0.02em" transform="skewX(-8)">NEEX</text>
+                  </svg>
+                </div>
+
+                <!-- Brasil Trading Fitness Fair (BTFF) -->
+                <div class="pf-marquee-logo" title="Brasil Trading Fitness Fair">
+                  <svg viewBox="0 0 170 54">
+                    <text x="85" y="14" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="800" font-size="14" letter-spacing="0.14em">BRASIL</text>
+                    <text x="85" y="26" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="700" font-size="10.5" letter-spacing="0.22em" opacity="0.9">TRADING</text>
+                    <text x="85" y="38" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="800" font-size="13" letter-spacing="0.16em">FITNESS</text>
+                    <text x="85" y="49" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="700" font-size="9" letter-spacing="0.32em" opacity="0.85">FAIR</text>
+                  </svg>
+                </div>
+
+                <!-- IEG Brasil (Ciclo 2) -->
+                <div class="pf-marquee-logo" title="IEG Brasil">
+                  <svg viewBox="0 0 160 50">
+                    <path d="M22 6 L48 44 M48 6 L22 44" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.85" />
+                    <text x="10" y="30" font-family="'Oswald', sans-serif" font-weight="700" font-size="26" letter-spacing="0.05em">IEG</text>
+                    <text x="26" y="44" font-family="'Avenir', sans-serif" font-weight="700" font-size="8.5" letter-spacing="0.28em">BRASIL</text>
+                  </svg>
+                </div>
+
+                <!-- Nutri in Rio (Ciclo 2) -->
+                <div class="pf-marquee-logo" title="Nutri in Rio">
+                  <svg viewBox="0 0 220 54">
+                    <g transform="translate(28, 27)" opacity="0.9">
+                      <circle cx="0" cy="0" r="4.5" fill="none" stroke="currentColor" stroke-width="2" />
+                      <path d="M0 -7 C-3 -15, 3 -15, 0 -7 Z" fill="currentColor" />
+                      <path d="M0 7 C-3 15, 3 15, 0 7 Z" fill="currentColor" />
+                      <path d="M-7 0 C-15 -3, -15 3, -7 0 Z" fill="currentColor" />
+                      <path d="M7 0 C15 -3, 15 3, 7 0 Z" fill="currentColor" />
+                      <path d="M-5 -5 C-11 -11, -6 -13, -5 -5 Z" fill="currentColor" />
+                      <path d="M5 5 C11 11, 6 13, 5 5 Z" fill="currentColor" />
+                      <path d="M-5 5 C-11 11, -13 6, -5 5 Z" fill="currentColor" />
+                      <path d="M5 -5 C11 -11, 13 -6, 5 -5 Z" fill="currentColor" />
+                    </g>
+                    <text x="60" y="21" font-family="'Oswald', sans-serif" font-weight="700" font-size="18" letter-spacing="0.06em">NUTRI</text>
+                    <text x="60" y="37" font-family="'Oswald', sans-serif" font-weight="700" font-size="18" letter-spacing="0.06em">IN RIO</text>
+                    <text x="60" y="48" font-family="'Avenir', sans-serif" font-weight="400" font-size="7.5" letter-spacing="0.05em" opacity="0.8">Saúde e Bem-estar</text>
+                  </svg>
+                </div>
+
+                <!-- NEEX (Ciclo 2) -->
+                <div class="pf-marquee-logo" title="NEEX">
+                  <svg viewBox="0 0 160 50">
+                    <text x="10" y="38" font-family="'Oswald', sans-serif" font-weight="800" font-style="italic" font-size="44" letter-spacing="0.02em" transform="skewX(-8)">NEEX</text>
+                  </svg>
+                </div>
+
+                <!-- Brasil Trading Fitness Fair (Ciclo 2) -->
+                <div class="pf-marquee-logo" title="Brasil Trading Fitness Fair">
+                  <svg viewBox="0 0 170 54">
+                    <text x="85" y="14" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="800" font-size="14" letter-spacing="0.14em">BRASIL</text>
+                    <text x="85" y="26" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="700" font-size="10.5" letter-spacing="0.22em" opacity="0.9">TRADING</text>
+                    <text x="85" y="38" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="800" font-size="13" letter-spacing="0.16em">FITNESS</text>
+                    <text x="85" y="49" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="700" font-size="9" letter-spacing="0.32em" opacity="0.85">FAIR</text>
+                  </svg>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Sub-barra de Metadados com Trajetória e Indicador Aeronáutico -->
+          <div class="pf-marquee-meta">
+            <div class="pf-marquee-meta__list">
+              <span class="pf-marquee-meta__item">BTFF · 2016-2024</span>
+              <span class="pf-marquee-meta__sep" aria-hidden="true">|</span>
+              <span class="pf-marquee-meta__item">IEG · 2022-2025</span>
+              <span class="pf-marquee-meta__sep" aria-hidden="true">|</span>
+              <span class="pf-marquee-meta__item">NUTRI IN RIO</span>
+              <span class="pf-marquee-meta__sep" aria-hidden="true">|</span>
+              <span class="pf-marquee-meta__item">NEEX</span>
+            </div>
+            <div class="pf-marquee-meta__status" title="Status: Conexão Aeronáutica Ativa">
+              <span class="pf-marquee-meta__reticle" aria-hidden="true">
+                <span class="pf-marquee-meta__reticle-dot"></span>
+              </span>
+            </div>
+          </div>
+        </section>
+        <!-- [/OPÇÃO 2] -->
+      </footer>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       QUARTA DOBRA: DEPOIMENTOS & CHANCELA AERONÁUTICA (CARROSSEL INFINITO)
+       ========================================================================== -->
+  <section class="orbit-testimonials" id="depoimentos" aria-label="Depoimentos e Avaliações de Clientes Orbitpan">
+    <!-- Cenografia de Fundo & Iluminação Aeronáutica -->
+    <div class="orbit-testimonials__backdrop" aria-hidden="true">
+      <div class="orbit-testimonials__glow-top"></div>
+      <div class="orbit-testimonials__glow-bottom"></div>
+      <div class="orbit-testimonials__grid-pattern"></div>
+      <div class="orbit-testimonials__vignette"></div>
+    </div>
+
+    <!-- Header Superior da Seção -->
+    <header class="orbit-testimonials__header">
+      <button type="button" class="orbit-testimonials__back-btn" id="testimonials-back-btn"
+        aria-label="Voltar para a Galeria de Portfólio 3D">
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        <span>Portfólio 3D</span>
+      </button>
+
+      <a href="./" class="orbit-brand" id="testimonials-brand-logo" aria-label="Orbitpan — Página Inicial">
+        <div class="orbit-brand__symbol" aria-hidden="true">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="18" cy="18" rx="15" ry="6" transform="rotate(-25 18 18)" stroke="currentColor"
+              stroke-width="1.6" stroke-dasharray="3 1.5" />
+            <polygon points="18,6 26,24 18,20 10,24" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"
+              fill="none" />
+            <circle cx="18" cy="18" r="2.2" fill="var(--color-accent-blue)" />
+          </svg>
+        </div>
+        <div class="orbit-brand__meta">
+          <span class="orbit-brand__title">Orbitpan</span>
+          <span class="orbit-brand__subtitle">Aviation Virtual Spaces</span>
+        </div>
+      </a>
+    </header>
+
+    <!-- Conteúdo Central: Introdução Editorial + Carrossel Infinito -->
+    <div class="orbit-testimonials__content">
+
+      <!-- Cabeçalho Editorial -->
+      <div class="orbit-testimonials__intro">
+        <div class="orbit-testimonials__tag">
+          <span class="orbit-testimonials__tag-text">Chancela Aeronáutica</span>
+          <div class="orbit-testimonials__tag-line" aria-hidden="true"></div>
+        </div>
+
+        <h2 class="orbit-testimonials__title">
+          <span class="orbit-testimonials__title-italic">Confiança</span>
+          <span class="orbit-testimonials__title-bold">Comprovada.</span>
+        </h2>
+
+        <p class="orbit-testimonials__subtitle">
+          Veja o relato de líderes, operadores e gestores de FBOs que utilizam a Orbitpan para apresentar seus hangares
+          e ativos executivos mais valiosos com fidelidade milimétrica e transparência operacional.
+        </p>
+      </div>
+
+      <!-- Marquee Container (Carrossel Infinito com Suporte a Drag & Pause no Hover) -->
+      <div class="orbit-marquee" aria-label="Carrossel contínuo de depoimentos">
+        <div class="orbit-marquee__track">
+
+          <!-- Card 1 -->
+          <article class="orbit-testimonial-card">
+            <div class="orbit-card__top">
+              <span class="orbit-card__quote-icon" aria-hidden="true">“</span>
+              <span class="orbit-card__facility-badge">
+                <span class="orbit-card__facility-dot" aria-hidden="true"></span>
+                Congonhas · Hangar 4.800m²
+              </span>
+            </div>
+            <p class="orbit-card__text">
+              "A precisão volumétrica dos tours da Orbitpan mudou radicalmente nosso ciclo comercial. Fechamos
+              hangareamentos anuais para Gulfstream e Global Express sem necessidade de visitas prévias presenciais. O
+              cliente tem certeza imediata da folga de pátio e da excelência do serviço."
+            </p>
+            <div class="orbit-card__author">
+              <div class="orbit-card__avatar-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&h=150&auto=format&fit=crop"
+                  alt="Foto de Roberto Silveira" class="orbit-card__avatar" loading="lazy">
+              </div>
+              <div class="orbit-card__author-info">
+                <span class="orbit-card__author-name">
+                  Roberto Silveira
+                  <span class="orbit-card__verified-icon" title="Cliente Verificado" aria-label="Verificado">
+                    <svg viewBox="0 0 16 16" fill="currentColor">
+                      <path
+                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                    </svg>
+                  </span>
+                </span>
+                <span class="orbit-card__author-role">Diretor de Operações de Hangar</span>
+                <span class="orbit-card__author-company">Congonhas Executive FBO</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="orbit-testimonial-card">
+            <div class="orbit-card__top">
+              <span class="orbit-card__quote-icon" aria-hidden="true">“</span>
+              <span class="orbit-card__facility-badge">
+                <span class="orbit-card__facility-dot" aria-hidden="true"></span>
+                Catarina Executive · FBO 24/7
+              </span>
+            </div>
+            <p class="orbit-card__text">
+              "Apresentar a cabine executiva e as configurações de galley em 360° em ultra-resolução revolucionou nossas
+              negociações de fretamento internacional. Os passageiros fecham voos com total segurança sobre o padrão e
+              acabamento das aeronaves."
+            </p>
+            <div class="orbit-card__author">
+              <div class="orbit-card__avatar-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=150&h=150&auto=format&fit=crop"
+                  alt="Foto de Cmte. Márcia Helena" class="orbit-card__avatar" loading="lazy">
+              </div>
+              <div class="orbit-card__author-info">
+                <span class="orbit-card__author-name">
+                  Cmte. Márcia Helena
+                  <span class="orbit-card__verified-icon" title="Cliente Verificado" aria-label="Verificado">
+                    <svg viewBox="0 0 16 16" fill="currentColor">
+                      <path
+                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                    </svg>
+                  </span>
+                </span>
+                <span class="orbit-card__author-role">Diretora de Operações & Frota</span>
+                <span class="orbit-card__author-company">Premier Jet Solutions</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="orbit-testimonial-card">
+            <div class="orbit-card__top">
+              <span class="orbit-card__quote-icon" aria-hidden="true">“</span>
+              <span class="orbit-card__facility-badge">
+                <span class="orbit-card__facility-dot" aria-hidden="true"></span>
+                Curitiba · Centro MRO
+              </span>
+            </div>
+            <p class="orbit-card__text">
+              "A fidelidade de iluminação natural e o nível de detalhes das baias técnicas transmitem exatamente o nível
+              de excelência que nossos clientes exigem. O tour virtual reduziu em mais de 60% o tempo gasto em visitas
+              presenciais de auditoria."
+            </p>
+            <div class="orbit-card__author">
+              <div class="orbit-card__avatar-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&h=150&auto=format&fit=crop"
+                  alt="Foto de Gustavo Henrique" class="orbit-card__avatar" loading="lazy">
+              </div>
+              <div class="orbit-card__author-info">
+                <span class="orbit-card__author-name">
+                  Gustavo Henrique
+                  <span class="orbit-card__verified-icon" title="Cliente Verificado" aria-label="Verificado">
+                    <svg viewBox="0 0 16 16" fill="currentColor">
+                      <path
+                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                    </svg>
+                  </span>
+                </span>
+                <span class="orbit-card__author-role">Gerente Geral de Manutenção</span>
+                <span class="orbit-card__author-company">AeroTech FBO Center</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="orbit-testimonial-card">
+            <div class="orbit-card__top">
+              <span class="orbit-card__quote-icon" aria-hidden="true">“</span>
+              <span class="orbit-card__facility-badge">
+                <span class="orbit-card__facility-dot" aria-hidden="true"></span>
+                Brasília · Terminal VIP
+              </span>
+            </div>
+            <p class="orbit-card__text">
+              "No segmento de alta gestão, o tempo é o recurso mais valioso. A plataforma da Orbitpan permitiu que
+              comitês de compra internacionais aprovassem a aquisição de posições em hangares com a mesma segurança de
+              um aperto de mãos presencial."
+            </p>
+            <div class="orbit-card__author">
+              <div class="orbit-card__avatar-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=150&h=150&auto=format&fit=crop"
+                  alt="Foto de Ricardo Ramos" class="orbit-card__avatar" loading="lazy">
+              </div>
+              <div class="orbit-card__author-info">
+                <span class="orbit-card__author-name">
+                  Ricardo Ramos
+                  <span class="orbit-card__verified-icon" title="Cliente Verificado" aria-label="Verificado">
+                    <svg viewBox="0 0 16 16" fill="currentColor">
+                      <path
+                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                    </svg>
+                  </span>
+                </span>
+                <span class="orbit-card__author-role">Diretor Comercial de Aviação</span>
+                <span class="orbit-card__author-company">Vanguard Wings Aviation</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 5 -->
+          <article class="orbit-testimonial-card">
+            <div class="orbit-card__top">
+              <span class="orbit-card__quote-icon" aria-hidden="true">“</span>
+              <span class="orbit-card__facility-badge">
+                <span class="orbit-card__facility-dot" aria-hidden="true"></span>
+                Florianópolis · Hub Helisul
+              </span>
+            </div>
+            <p class="orbit-card__text">
+              "Como primeira empresa do setor signatária do movimento ODS, a Orbitpan une tecnologia imersiva de ponta e
+              sustentabilidade real, eliminando deslocamentos desnecessários e elevando o padrão de apresentação
+              aeronáutica do país."
+            </p>
+            <div class="orbit-card__author">
+              <div class="orbit-card__avatar-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=150&h=150&auto=format&fit=crop"
+                  alt="Foto de Dra. Juliana Monteiro" class="orbit-card__avatar" loading="lazy">
+              </div>
+              <div class="orbit-card__author-info">
+                <span class="orbit-card__author-name">
+                  Dra. Juliana Monteiro
+                  <span class="orbit-card__verified-icon" title="Cliente Verificado" aria-label="Verificado">
+                    <svg viewBox="0 0 16 16" fill="currentColor">
+                      <path
+                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                    </svg>
+                  </span>
+                </span>
+                <span class="orbit-card__author-role">Head de Infraestrutura Aeronáutica</span>
+                <span class="orbit-card__author-company">Helisul & Executive Hubs</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- DUPLICATAS PARA LOOP INFINITO PERFEITO (MARQUEE) -->
+          <!-- Card 1 Duplicata -->
+          <article class="orbit-testimonial-card" aria-hidden="true">
+            <div class="orbit-card__top">
+              <span class="orbit-card__quote-icon">“</span>
+              <span class="orbit-card__facility-badge">
+                <span class="orbit-card__facility-dot"></span>
+                Congonhas · Hangar 4.800m²
+              </span>
+            </div>
+            <p class="orbit-card__text">
+              "A precisão volumétrica dos tours da Orbitpan mudou radicalmente nosso ciclo comercial. Fechamos
+              hangareamentos anuais para Gulfstream e Global Express sem necessidade de visitas prévias presenciais. O
+              cliente tem certeza imediata da folga de pátio e da excelência do serviço."
+            </p>
+            <div class="orbit-card__author">
+              <div class="orbit-card__avatar-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&h=150&auto=format&fit=crop"
+                  alt="Foto de Roberto Silveira" class="orbit-card__avatar" loading="lazy">
+              </div>
+              <div class="orbit-card__author-info">
+                <span class="orbit-card__author-name">
+                  Roberto Silveira
+                  <span class="orbit-card__verified-icon">
+                    <svg viewBox="0 0 16 16" fill="currentColor">
+                      <path
+                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                    </svg>
+                  </span>
+                </span>
+                <span class="orbit-card__author-role">Diretor de Operações de Hangar</span>
+                <span class="orbit-card__author-company">Congonhas Executive FBO</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2 Duplicata -->
+          <article class="orbit-testimonial-card" aria-hidden="true">
+            <div class="orbit-card__top">
+              <span class="orbit-card__quote-icon">“</span>
+              <span class="orbit-card__facility-badge">
+                <span class="orbit-card__facility-dot"></span>
+                Catarina Executive · FBO 24/7
+              </span>
+            </div>
+            <p class="orbit-card__text">
+              "Apresentar a cabine executiva e as configurações de galley em 360° em ultra-resolução revolucionou nossas
+              negociações de fretamento internacional. Os passageiros fecham voos com total segurança sobre o padrão e
+              acabamento das aeronaves."
+            </p>
+            <div class="orbit-card__author">
+              <div class="orbit-card__avatar-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=150&h=150&auto=format&fit=crop"
+                  alt="Foto de Cmte. Márcia Helena" class="orbit-card__avatar" loading="lazy">
+              </div>
+              <div class="orbit-card__author-info">
+                <span class="orbit-card__author-name">
+                  Cmte. Márcia Helena
+                  <span class="orbit-card__verified-icon">
+                    <svg viewBox="0 0 16 16" fill="currentColor">
+                      <path
+                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                    </svg>
+                  </span>
+                </span>
+                <span class="orbit-card__author-role">Diretora de Operações & Frota</span>
+                <span class="orbit-card__author-company">Premier Jet Solutions</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3 Duplicata -->
+          <article class="orbit-testimonial-card" aria-hidden="true">
+            <div class="orbit-card__top">
+              <span class="orbit-card__quote-icon">“</span>
+              <span class="orbit-card__facility-badge">
+                <span class="orbit-card__facility-dot"></span>
+                Curitiba · Centro MRO
+              </span>
+            </div>
+            <p class="orbit-card__text">
+              "A fidelidade de iluminação natural e o nível de detalhes das baias técnicas transmitem exatamente o nível
+              de excelência que nossos clientes exigem. O tour virtual reduziu em mais de 60% o tempo gasto em visitas
+              presenciais de auditoria."
+            </p>
+            <div class="orbit-card__author">
+              <div class="orbit-card__avatar-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&h=150&auto=format&fit=crop"
+                  alt="Foto de Gustavo Henrique" class="orbit-card__avatar" loading="lazy">
+              </div>
+              <div class="orbit-card__author-info">
+                <span class="orbit-card__author-name">
+                  Gustavo Henrique
+                  <span class="orbit-card__verified-icon">
+                    <svg viewBox="0 0 16 16" fill="currentColor">
+                      <path
+                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                    </svg>
+                  </span>
+                </span>
+                <span class="orbit-card__author-role">Gerente Geral de Manutenção</span>
+                <span class="orbit-card__author-company">AeroTech FBO Center</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4 Duplicata -->
+          <article class="orbit-testimonial-card" aria-hidden="true">
+            <div class="orbit-card__top">
+              <span class="orbit-card__quote-icon">“</span>
+              <span class="orbit-card__facility-badge">
+                <span class="orbit-card__facility-dot"></span>
+                Brasília · Terminal VIP
+              </span>
+            </div>
+            <p class="orbit-card__text">
+              "No segmento de alta gestão, o tempo é o recurso mais valioso. A plataforma da Orbitpan permitiu que
+              comitês de compra internacionais aprovassem a aquisição de posições em hangares com a mesma segurança de
+              um aperto de mãos presencial."
+            </p>
+            <div class="orbit-card__author">
+              <div class="orbit-card__avatar-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=150&h=150&auto=format&fit=crop"
+                  alt="Foto de Ricardo Ramos" class="orbit-card__avatar" loading="lazy">
+              </div>
+              <div class="orbit-card__author-info">
+                <span class="orbit-card__author-name">
+                  Ricardo Ramos
+                  <span class="orbit-card__verified-icon">
+                    <svg viewBox="0 0 16 16" fill="currentColor">
+                      <path
+                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                    </svg>
+                  </span>
+                </span>
+                <span class="orbit-card__author-role">Diretor Comercial de Aviação</span>
+                <span class="orbit-card__author-company">Vanguard Wings Aviation</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 5 Duplicata -->
+          <article class="orbit-testimonial-card" aria-hidden="true">
+            <div class="orbit-card__top">
+              <span class="orbit-card__quote-icon">“</span>
+              <span class="orbit-card__facility-badge">
+                <span class="orbit-card__facility-dot"></span>
+                Florianópolis · Hub Helisul
+              </span>
+            </div>
+            <p class="orbit-card__text">
+              "Como primeira empresa do setor signatária do movimento ODS, a Orbitpan une tecnologia imersiva de ponta e
+              sustentabilidade real, eliminando deslocamentos desnecessários e elevando o padrão de apresentação
+              aeronáutica do país."
+            </p>
+            <div class="orbit-card__author">
+              <div class="orbit-card__avatar-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=150&h=150&auto=format&fit=crop"
+                  alt="Foto de Dra. Juliana Monteiro" class="orbit-card__avatar" loading="lazy">
+              </div>
+              <div class="orbit-card__author-info">
+                <span class="orbit-card__author-name">
+                  Dra. Juliana Monteiro
+                  <span class="orbit-card__verified-icon">
+                    <svg viewBox="0 0 16 16" fill="currentColor">
+                      <path
+                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                    </svg>
+                  </span>
+                </span>
+                <span class="orbit-card__author-role">Head de Infraestrutura Aeronáutica</span>
+                <span class="orbit-card__author-company">Helisul & Executive Hubs</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Rodapé da Seção: Navegação para a Próxima Dobra (FAQ) -->
+    <footer class="orbit-testimonials__footer">
+      <button type="button" class="orbit-testimonials__scroll-cue" id="testimonials-scroll-to-faq"
+        aria-label="Rolar para Perguntas Frequentes (FAQ)">
+        <span>Perguntas Frequentes</span>
+        <span class="orbit-testimonials__scroll-icon" aria-hidden="true">
+          <svg viewBox="0 0 16 16" fill="none">
+            <path d="M8 3V13M8 13L3.5 8.5M8 13L12.5 8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </span>
+      </button>
+    </footer>
+  </section>
+
+  <!-- ==========================================================================
+       QUINTA DOBRA: FAQ & DIRETRIZES TÉCNICAS (PERGUNTAS FREQUENTES)
+       ========================================================================== -->
+  <section class="orbit-faq" id="faq" aria-label="Perguntas Frequentes e Diretrizes Técnicas Orbitpan">
+    <!-- Cenografia Atmosférica de Fundo -->
+    <div class="orbit-faq__bg" aria-hidden="true">
+      <div class="dots-grid"></div>
+    </div>
+
+    <!-- Viewport do FAQ (Primeira Tela da 5ª Dobra) -->
+    <div class="orbit-faq__screen" id="faq-screen">
+
+      <!-- Header Superior com Retorno aos Depoimentos e Marca -->
+      <header class="orbit-faq__header">
+        <button type="button" class="orbit-faq__back-btn" id="faq-back-btn"
+          aria-label="Voltar para a Dobra de Depoimentos">
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+          <span>Depoimentos</span>
+        </button>
+
+        <a href="./" class="orbit-brand" id="faq-brand-logo" aria-label="Orbitpan — Página Inicial">
+          <div class="orbit-brand__symbol" aria-hidden="true">
+            <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="18" cy="18" rx="15" ry="6" transform="rotate(-25 18 18)" stroke="currentColor"
+                stroke-width="1.6" stroke-dasharray="3 1.5" />
+              <polygon points="18,6 26,24 18,20 10,24" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"
+                fill="none" />
+              <circle cx="18" cy="18" r="2.2" fill="var(--color-accent-blue)" />
+            </svg>
+          </div>
+          <div class="orbit-brand__meta">
+            <span class="orbit-brand__title">Orbitpan</span>
+            <span class="orbit-brand__subtitle">Aviation Virtual Spaces</span>
+          </div>
+        </a>
+      </header>
+
+      <!-- Conteúdo Central: Perguntas e Card de Engenharia -->
+      <main class="orbit-faq__container">
+
+        <!-- Cabeçalho Editorial -->
+        <div class="orbit-faq__headline-wrap">
+          <span class="orbit-faq__tag">Diretrizes Técnicas &amp; Operacionais</span>
+          <h2 class="orbit-faq__title">
+            Perguntas <span class="orbit-faq__title-accent">Frequentes</span> &amp; Suporte
+          </h2>
+          <p class="orbit-faq__subtitle">
+            Entenda nossos processos de digitalização volumétrica 360°, conformidade com normas aeronáuticas, prazos de
+            entrega e segurança de dados.
+          </p>
+        </div>
+
+        <!-- Grade de Perguntas (Accordion de Alta Performance) -->
+        <div class="orbit-faq__grid">
+          <div class="orbit-faq__accordion" role="region" aria-label="Lista de Perguntas Frequentes">
+
+            <!-- Item 1 -->
+            <article class="faq-accordion-item is-open">
+              <button type="button" class="faq-accordion-item__trigger" aria-expanded="true" aria-controls="faq-desc-1"
+                id="faq-btn-1">
+                <div class="faq-accordion-item__header-left">
+                  <span class="faq-accordion-item__index">01</span>
+                  <h3 class="faq-accordion-item__question">Como funciona a captura 360° em um hangar operacional ativo?
+                  </h3>
+                </div>
+                <div class="faq-accordion-item__icon-box" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" fill="none">
+                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </div>
+              </button>
+              <div class="faq-accordion-item__body" id="faq-desc-1" role="region" aria-labelledby="faq-btn-1">
+                <div class="faq-accordion-item__content">
+                  <div class="faq-accordion-item__inner">
+                    Nossa equipe técnica utiliza sensores ópticos de alta sensibilidade e câmeras panorâmicas calibradas
+                    para a aviação. O escaneamento é programado em janelas de menor tráfego ou intervalos entre
+                    operações (geralmente entre pousos e decolagens ou períodos noturnos), levando entre 2 e 4 horas
+                    para hangares de até 5.000m². A rotina operacional do hangar não é paralisada.
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Item 2 -->
+            <article class="faq-accordion-item">
+              <button type="button" class="faq-accordion-item__trigger" aria-expanded="false" aria-controls="faq-desc-2"
+                id="faq-btn-2">
+                <div class="faq-accordion-item__header-left">
+                  <span class="faq-accordion-item__index">02</span>
+                  <h3 class="faq-accordion-item__question">A captura compromete a segurança ou matrículas (tail numbers)
+                    de aeronaves?</h3>
+                </div>
+                <div class="faq-accordion-item__icon-box" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" fill="none">
+                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </div>
+              </button>
+              <div class="faq-accordion-item__body" id="faq-desc-2" role="region" aria-labelledby="faq-btn-2">
+                <div class="faq-accordion-item__content">
+                  <div class="faq-accordion-item__inner">
+                    Absolutamente não. Operamos sob rigorosos termos de confidencialidade (NDA). Todas as matrículas de
+                    aeronaves de terceiros, documentos técnicos visíveis em bancadas e rostos de colaboradores passam
+                    por anonimização e borramento irreversível de alta fidelidade antes de qualquer entrega ou
+                    publicação.
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Item 3 -->
+            <article class="faq-accordion-item">
+              <button type="button" class="faq-accordion-item__trigger" aria-expanded="false" aria-controls="faq-desc-3"
+                id="faq-btn-3">
+                <div class="faq-accordion-item__header-left">
+                  <span class="faq-accordion-item__index">03</span>
+                  <h3 class="faq-accordion-item__question">Qual é a resolução final e como os clientes acessam o tour
+                    virtual?</h3>
+                </div>
+                <div class="faq-accordion-item__icon-box" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" fill="none">
+                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </div>
+              </button>
+              <div class="faq-accordion-item__body" id="faq-desc-3" role="region" aria-labelledby="faq-btn-3">
+                <div class="faq-accordion-item__content">
+                  <div class="faq-accordion-item__inner">
+                    Entregamos o ambiente em resolução nativa de até 16K HDR com compressão óptica em WebGL e WebXR. O
+                    tour roda com fluidez e carregamento ultrarrápido diretamente no navegador (Chrome, Safari, Edge) em
+                    qualquer smartphone, tablet, computador ou headset de realidade virtual (Apple Vision Pro, Meta
+                    Quest), sem requerer a instalação de aplicativos externos.
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Item 4 -->
+            <article class="faq-accordion-item">
+              <button type="button" class="faq-accordion-item__trigger" aria-expanded="false" aria-controls="faq-desc-4"
+                id="faq-btn-4">
+                <div class="faq-accordion-item__header-left">
+                  <span class="faq-accordion-item__index">04</span>
+                  <h3 class="faq-accordion-item__question">É possível realizar medições de folga de asa (clearance)
+                    dentro do tour?</h3>
+                </div>
+                <div class="faq-accordion-item__icon-box" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" fill="none">
+                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </div>
+              </button>
+              <div class="faq-accordion-item__body" id="faq-desc-4" role="region" aria-labelledby="faq-btn-4">
+                <div class="faq-accordion-item__content">
+                  <div class="faq-accordion-item__inner">
+                    Sim. Disponibilizamos o módulo técnico opcional com escala geométrica calibrada via nuvem de pontos
+                    LiDAR. Gerentes de pátio e diretores de manutenção podem conferir se a envergadura de jatos
+                    específicos (como Global 7500, Falcon 8X ou Gulfstream G650) cumpre as distâncias de segurança
+                    exigidas em relação aos pilares e portões do hangar.
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Item 5 -->
+            <article class="faq-accordion-item">
+              <button type="button" class="faq-accordion-item__trigger" aria-expanded="false" aria-controls="faq-desc-5"
+                id="faq-btn-5">
+                <div class="faq-accordion-item__header-left">
+                  <span class="faq-accordion-item__index">05</span>
+                  <h3 class="faq-accordion-item__question">Qual o prazo de entrega após a realização das fotos no
+                    hangar?</h3>
+                </div>
+                <div class="faq-accordion-item__icon-box" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" fill="none">
+                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </div>
+              </button>
+              <div class="faq-accordion-item__body" id="faq-desc-5" role="region" aria-labelledby="faq-btn-5">
+                <div class="faq-accordion-item__content">
+                  <div class="faq-accordion-item__inner">
+                    O link de validação operacional fica disponível em até 5 dias úteis. Após os ajustes de pontos de
+                    interesse (hotspots), dados de contato da equipe comercial e identidade visual personalizada, o tour
+                    final é publicado e liberado para incorporação em seu site ou compartilhamento instantâneo por
+                    WhatsApp e e-mail com clientes remotos.
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Item 6 -->
+            <article class="faq-accordion-item">
+              <button type="button" class="faq-accordion-item__trigger" aria-expanded="false" aria-controls="faq-desc-6"
+                id="faq-btn-6">
+                <div class="faq-accordion-item__header-left">
+                  <span class="faq-accordion-item__index">06</span>
+                  <h3 class="faq-accordion-item__question">O que significa a Orbitpan ser a primeira signatária do
+                    movimento ODS?</h3>
+                </div>
+                <div class="faq-accordion-item__icon-box" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" fill="none">
+                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </div>
+              </button>
+              <div class="faq-accordion-item__body" id="faq-desc-6" role="region" aria-labelledby="faq-btn-6">
+                <div class="faq-accordion-item__content">
+                  <div class="faq-accordion-item__inner">
+                    Somos pioneiros no setor aeronáutico catarinense ao aderir formalmente aos Objetivos de
+                    Desenvolvimento Sustentável da ONU (ODS 9 e ODS 13). Ao viabilizar auditorias e vistorias pré-compra
+                    100% remotas e imersivas, eliminamos deslocamentos de comitês técnicos em jatos e automóveis,
+                    reduzindo substancialmente emissões de CO2 e custos operacionais desnecessários.
+                  </div>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- Card de Suporte Técnico & Engenharia -->
+        <div class="orbit-faq-contact-card">
+          <div class="orbit-faq-contact-card__info">
+            <div class="orbit-faq-contact-card__badge">
+              <span class="orbit-faq-contact-card__dot"></span>
+              <span>Engenharia &amp; Viabilidade de Hangar</span>
+            </div>
+            <h3 class="orbit-faq-contact-card__title">Precisa de viabilidade técnica customizada?</h3>
+            <p class="orbit-faq-contact-card__desc">
+              Consulte nosso time técnico para projetos especiais, frotas compartilhadas ou integração direta com
+              sistemas de pátio e FBO.
+            </p>
+          </div>
+          <a href="https://wa.me/5548999990000?text=Ol%C3%A1%2C%20gostaria%20de%20tirar%20d%C3%BAvidas%20t%C3%A9cnicas%20sobre%20o%20tour%20virtual%20Orbitpan"
+            target="_blank" rel="noopener noreferrer" class="orbit-faq-contact-card__btn" id="faq-whatsapp-btn">
+            <span>Falar com Engenharia</span>
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M2 8H13.5M9 3.5L13.5 8L9 12.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </a>
+        </div>
+
+      </main>
+
+      <!-- Rodapé do Viewport do FAQ: Ações de Retorno e Telemetria -->
+      <footer class="orbit-faq__footer-nav">
+        <div class="orbit-faq__telemetry">
+          <div class="orbit-faq__telemetry-item">
+            <span class="orbit-faq__telemetry-dot" aria-hidden="true"></span>
+            <span>Protocolo de Segurança Homologado</span>
+          </div>
+          <div class="orbit-faq__telemetry-item">
+            <span class="orbit-faq__telemetry-dot" aria-hidden="true"></span>
+            <span>Resolução 16K HDR</span>
+          </div>
+          <div class="orbit-faq__telemetry-item">
+            <span class="orbit-faq__telemetry-dot" aria-hidden="true"></span>
+            <span>Signatária ODS em SC</span>
+          </div>
+        </div>
+
+        <div class="orbit-faq__actions">
+          <button type="button" class="orbit-faq__scroll-hint" id="faq-scroll-to-testimonials"
+            aria-label="Rolar para cima para voltar aos Depoimentos">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M8 13V3M8 3L3.5 7.5M8 3L12.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+            <span>Depoimentos ↑</span>
+          </button>
+
+          <button type="button" class="orbit-faq__scroll-to-footer" id="faq-scroll-to-footer"
+            aria-label="Rolar para o Rodapé Institucional">
+            <span>Rodapé &amp; Contatos</span>
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M8 3V13M8 13L3.5 8.5M8 13L12.5 8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+      </footer>
+
+    </div><!-- /orbit-faq__screen -->
+
+    <!-- ==========================================================================
+       FOOTER INSTITUCIONAL COMPLETO DA ORBITPAN (ABAIXO DA QUINTA DOBRA)
+       Design Minimalista Editorial de Alto Luxo (Swiss / Brutalist-Luxury)
+       ========================================================================== -->
+    <footer class="orbit-site-footer" id="orbit-site-footer" aria-label="Rodapé Institucional Orbitpan">
+      <div class="orbit-site-footer__inner">
+
+        <!-- Linha Superior (Tagline Editorial & Botão Minimalista) -->
+        <div class="orbit-footer-top">
+          <p class="orbit-footer-tagline">
+            DIGITALIZAÇÃO VOLUMÉTRICA · TOURS 360° · AVIAÇÃO EXECUTIVA · HANGAR &amp; FBO
+          </p>
+
+          <a href="https://wa.me/5548999990000?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20a%20equipe%20Orbitpan"
+            target="_blank" rel="noopener noreferrer" class="orbit-footer-cta-minimal" id="footer-cta-minimal">
+            <span>FALAR COM A ORBITPAN</span>
+            <span class="orbit-footer-cta-line" aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <!-- Grade Central: 4 Colunas com Divisores Elegantes e Numerações -->
+        <div class="orbit-footer-main">
+
+          <!-- Coluna 01: CONTATO -->
+          <div class="orbit-footer-column">
+            <div class="orbit-footer-col-header">
+              <span class="orbit-footer-col-num">01</span>
+              <span class="orbit-footer-col-title">CONTATO</span>
+            </div>
+            <div class="orbit-footer-col-content">
+              <a href="mailto:comercial@orbitpan.com.br" class="orbit-footer-text-link orbit-footer-email">
+                comercial@orbitpan.com.br
+              </a>
+              <a href="tel:+5548999990000" class="orbit-footer-text-link orbit-footer-phone">
+                BR +55 48 99999-0000
+              </a>
+            </div>
+          </div>
+
+          <!-- Coluna 02: REDES -->
+          <div class="orbit-footer-column">
+            <div class="orbit-footer-col-header">
+              <span class="orbit-footer-col-num">02</span>
+              <span class="orbit-footer-col-title">REDES</span>
+            </div>
+            <div class="orbit-footer-col-content">
+              <a href="https://instagram.com/orbitpan" target="_blank" rel="noopener noreferrer"
+                class="orbit-footer-text-link">
+                Instagram
+              </a>
+              <a href="https://linkedin.com/company/orbitpan" target="_blank" rel="noopener noreferrer"
+                class="orbit-footer-text-link">
+                LinkedIn
+              </a>
+            </div>
+          </div>
+
+          <!-- Coluna 03: NAVEGAÇÃO -->
+          <div class="orbit-footer-column">
+            <div class="orbit-footer-col-header">
+              <span class="orbit-footer-col-num">03</span>
+              <span class="orbit-footer-col-title">NAVEGAÇÃO</span>
+            </div>
+            <nav class="orbit-footer-col-content orbit-footer-nav" aria-label="Navegação entre Dobras Orbitpan">
+              <button type="button" class="orbit-footer-nav-item" data-footer-nav="hero">01 Hangar 360°</button>
+              <button type="button" class="orbit-footer-nav-item" data-footer-nav="empresa">02 Visão da Empresa</button>
+              <button type="button" class="orbit-footer-nav-item" data-footer-nav="portfolio">03 Portfólio 3D</button>
+              <button type="button" class="orbit-footer-nav-item" data-footer-nav="depoimentos">04 Depoimentos</button>
+              <button type="button" class="orbit-footer-nav-item" data-footer-nav="faq">05 Diretrizes &amp; FAQ</button>
+            </nav>
+          </div>
+
+          <!-- Coluna 04: STATUS -->
+          <div class="orbit-footer-column orbit-footer-column--status">
+            <div class="orbit-footer-col-header">
+              <span class="orbit-footer-col-num">04</span>
+              <span class="orbit-footer-col-title">STATUS</span>
+            </div>
+            <div class="orbit-footer-col-content">
+              <div class="orbit-footer-location">FLORIANÓPOLIS, BR</div>
+              <div class="orbit-footer-clock" id="footer-live-clock">22:45 BRT</div>
+              <div class="orbit-footer-availability">
+                <span class="orbit-footer-status-dot" aria-hidden="true"></span>
+                <span>DISPONÍVEL PARA PROJETOS</span>
+              </div>
+
+              <!-- Botão Circular Minimalista de Retorno ao Topo -->
+              <button type="button" class="orbit-footer-circle-btn" id="footer-back-to-top"
+                aria-label="Voltar ao Topo do FAQ">
+                <span class="orbit-footer-circle-dot" aria-hidden="true"></span>
+                <svg viewBox="0 0 16 16" fill="none" class="orbit-footer-circle-arrow" aria-hidden="true">
+                  <path d="M8 12V4M8 4L4 8M8 4L12 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Linha Inferior: Copyright e Políticas -->
+        <div class="orbit-footer-bottom">
+          <div class="orbit-footer-copy">
+            &copy; 2026 ORBITPAN &nbsp;|&nbsp; ESTRATÉGIA &amp; DESIGN EDITORIAL 360°
+          </div>
+
+          <div class="orbit-footer-legal">
+            <a href="#privacidade" class="orbit-footer-legal-link">POLÍTICA DE PRIVACIDADE</a>
+            <span class="orbit-footer-legal-divider" aria-hidden="true">|</span>
+            <span class="orbit-footer-rights">TODOS OS DIREITOS RESERVADOS</span>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+  </section>
+
+  <!-- Botão Flutuante de Ação: WhatsApp (Referência Vértice Ferramental) -->
+  <a href="https://wa.me/5548999990000?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20a%20equipe%20Orbitpan"
+    class="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Fale Conosco no WhatsApp">
+    <span class="whatsapp-tooltip">Fale Conosco</span>
+    <div class="whatsapp-icon-container">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
+        <path
+          d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+      </svg>
+    </div>
+  </a>
+
+  <!-- Bibliotecas e Controladores Principais -->
+  <script src="./assets/vendor/three.min.js"></script>
+  <script src="./assets/vendor/gsap/gsap.min.js"></script>
+  <script src="./assets/js/panorama-controller.js"></script>
+  <script src="./assets/js/hero.js"></script>
+  <script src="./assets/js/company-explorer.js?v=3"></script>
+  <script src="./assets/js/testimonials.js"></script>
+  <script src="./assets/js/faq.js?v=2"></script>
+  <script src="./assets/js/scene-transition.js?v=3"></script>
+  <script src="./assets/js/portfolio-timeline.js?v=2"></script>
+  <script src="./assets/js/whatsapp-button.js"></script>
+  <script src="./assets/js/custom-cursor.js"></script>
+  <script src="./assets/js/exploration-progress.js"></script>
+  <!-- Controle Interativo do Carrossel de Logos (Opção 2) -->
+  <script src="./assets/js/portfolio-marquee.js"></script>
+
+</body>
+
+</html>

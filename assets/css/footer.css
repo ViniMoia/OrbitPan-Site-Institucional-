@@ -1,0 +1,482 @@
+/* ==========================================================================
+   ORBITPAN — FOOTER INSTITUCIONAL MASTER (MINIMALISTA EDITORIAL DE LUXO)
+   Design System: Preto Profundo & Acentos Ciano Aeroespacial
+   Inspiração: Swiss / Brutalist-Luxury Editorial Minimalist
+   Performance: 100% CSS Nativo, Zero Layout Thrashing, Hardware Accelerated
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Contêiner Principal do Rodapé
+   -------------------------------------------------------------------------- */
+.orbit-site-footer {
+  position: relative;
+  z-index: 20;
+  width: 100%;
+  background-color: #030407;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: clamp(48px, 6vh, 80px) clamp(24px, 5.5vw, 96px) clamp(24px, 3.5vh, 44px);
+  color: #ffffff;
+  overflow: hidden;
+  isolation: isolate;
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+/* Brilho radial de fundo ultra-sutil (profundidade óptica aeroespacial) */
+.orbit-site-footer::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 15%;
+  width: 50vw;
+  height: 280px;
+  background: radial-gradient(ellipse at 50% 100%, rgba(56, 189, 248, 0.035), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orbit-site-footer__inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --------------------------------------------------------------------------
+   2. Linha Superior: Tagline Editorial & Botão Minimalista
+   -------------------------------------------------------------------------- */
+.orbit-footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding-bottom: clamp(36px, 5vh, 56px);
+}
+
+.orbit-footer-tagline {
+  margin: 0;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: clamp(0.72rem, 0.9vw, 0.82rem);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+  line-height: 1.6;
+}
+
+/* Botão Minimalista Retangular com Traço */
+.orbit-footer-cta-minimal {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 28px;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  background: transparent;
+  color: #ffffff;
+  text-decoration: none;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.orbit-footer-cta-minimal span:first-child {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.orbit-footer-cta-line {
+  display: inline-block;
+  width: 32px;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s;
+}
+
+.orbit-footer-cta-minimal:hover {
+  border-color: rgba(56, 189, 248, 0.65);
+  background-color: rgba(56, 189, 248, 0.05);
+  color: #ffffff;
+  box-shadow: 0 0 24px rgba(56, 189, 248, 0.12);
+}
+
+.orbit-footer-cta-minimal:hover .orbit-footer-cta-line {
+  width: 44px;
+  background-color: var(--color-accent-blue, #38bdf8);
+}
+
+.orbit-footer-cta-minimal:active {
+  transform: scale(0.98);
+}
+
+/* --------------------------------------------------------------------------
+   3. Grade Principal em 4 Colunas com Divisores Elegantes
+   -------------------------------------------------------------------------- */
+.orbit-footer-main {
+  display: grid;
+  grid-template-columns: 1.15fr 0.95fr 1.1fr 1fr;
+  gap: clamp(24px, 4vw, 64px);
+  padding-bottom: clamp(48px, 7vh, 84px);
+}
+
+.orbit-footer-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cabeçalho da Coluna com Linha Divisória Fina */
+.orbit-footer-col-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: clamp(22px, 3vh, 32px);
+  position: relative;
+}
+
+.orbit-footer-col-header::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-accent-blue, #38bdf8);
+  transition: width 0.4s ease;
+}
+
+.orbit-footer-column:hover .orbit-footer-col-header::after {
+  width: 48px;
+}
+
+.orbit-footer-col-num {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.orbit-footer-col-title {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.orbit-footer-col-content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* --------------------------------------------------------------------------
+   4. Links de Texto (Colunas 01, 02 e 03)
+   -------------------------------------------------------------------------- */
+.orbit-footer-text-link {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: clamp(0.92rem, 1.05vw, 1.02rem);
+  font-weight: 400;
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+  line-height: 1.5;
+  display: inline-block;
+  width: fit-content;
+}
+
+.orbit-footer-text-link:hover {
+  color: var(--color-accent-blue, #38bdf8);
+  transform: translateX(3px);
+}
+
+/* E-mail com sublinhado sutil de estilo editorial */
+.orbit-footer-email {
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.25);
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+}
+
+.orbit-footer-email:hover {
+  text-decoration-color: var(--color-accent-blue, #38bdf8);
+}
+
+.orbit-footer-phone {
+  color: rgba(255, 255, 255, 0.72);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.orbit-footer-phone:hover {
+  color: #ffffff;
+}
+
+/* Navegação entre Dobras (Coluna 03) */
+.orbit-footer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.orbit-footer-nav-item {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: clamp(0.92rem, 1.05vw, 1.02rem);
+  font-weight: 400;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  line-height: 1.5;
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.orbit-footer-nav-item:hover {
+  color: var(--color-accent-blue, #38bdf8);
+  transform: translateX(4px);
+}
+
+.orbit-footer-nav-item:focus-visible {
+  outline: 2px solid var(--color-accent-blue, #38bdf8);
+  outline-offset: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   5. Coluna 04: Telemetria & Status Operacional
+   -------------------------------------------------------------------------- */
+.orbit-footer-column--status .orbit-footer-col-content {
+  gap: 12px;
+}
+
+.orbit-footer-location {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.orbit-footer-clock {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: clamp(1.2rem, 1.5vw, 1.45rem);
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+  margin: 2px 0 4px 0;
+}
+
+.orbit-footer-availability {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* Ponto pulsante de status ativo */
+.orbit-footer-status-dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-accent-blue, #38bdf8);
+  box-shadow: 0 0 10px var(--color-accent-blue, #38bdf8);
+  flex-shrink: 0;
+}
+
+.orbit-footer-status-dot::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid rgba(56, 189, 248, 0.6);
+  animation: orbit-footer-pulse 2.4s infinite cubic-bezier(0.24, 0, 0.38, 1);
+}
+
+@keyframes orbit-footer-pulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+/* Botão Circular Minimalista de Retorno ao Topo */
+.orbit-footer-circle-btn {
+  margin-top: 18px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #ffffff;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0;
+}
+
+.orbit-footer-circle-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.orbit-footer-circle-arrow {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.orbit-footer-circle-btn:hover {
+  border-color: var(--color-accent-blue, #38bdf8);
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.35);
+  background-color: rgba(56, 189, 248, 0.08);
+}
+
+.orbit-footer-circle-btn:hover .orbit-footer-circle-dot {
+  opacity: 0;
+  transform: scale(0.2);
+}
+
+.orbit-footer-circle-btn:hover .orbit-footer-circle-arrow {
+  opacity: 1;
+  transform: translateY(0);
+  color: var(--color-accent-blue, #38bdf8);
+}
+
+.orbit-footer-circle-btn:focus-visible {
+  outline: 2px solid var(--color-accent-blue, #38bdf8);
+  outline-offset: 4px;
+}
+
+.orbit-footer-circle-btn:active {
+  transform: scale(0.92);
+}
+
+/* --------------------------------------------------------------------------
+   6. Barra Inferior: Direitos Autorais e Políticas
+   -------------------------------------------------------------------------- */
+.orbit-footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: clamp(24px, 3vh, 32px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.orbit-footer-copy {
+  line-height: 1.6;
+}
+
+.orbit-footer-legal {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.orbit-footer-legal-link {
+  color: rgba(255, 255, 255, 0.42);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.orbit-footer-legal-link:hover {
+  color: #ffffff;
+}
+
+.orbit-footer-legal-divider {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.orbit-footer-rights {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+/* --------------------------------------------------------------------------
+   7. Responsividade e Adaptação para Telas Menores
+   -------------------------------------------------------------------------- */
+@media (max-width: 1080px) {
+  .orbit-footer-main {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .orbit-site-footer {
+    padding: 40px 20px 28px 20px;
+  }
+
+  .orbit-footer-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding-bottom: 32px;
+  }
+
+  .orbit-footer-cta-minimal {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .orbit-footer-main {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding-bottom: 40px;
+  }
+
+  .orbit-footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .orbit-footer-legal {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}

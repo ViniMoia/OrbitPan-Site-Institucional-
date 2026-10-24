@@ -1,0 +1,609 @@
+/* ==========================================================================
+   ORBITPAN — QUARTA DOBRA: DEPOIMENTOS (TESTIMONIALS & CHANCELA AERONÁUTICA)
+   Design System de Alta Fidelidade com Carrossel Infinito e Microinterações
+   Inspirado na arquitetura premium de Aura Shield e adaptado ao Design System Orbitpan
+   ========================================================================== */
+
+/* Container Principal da Quarta Dobra */
+.orbit-testimonials {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  user-select: none;
+  background-color: var(--color-base, #06080c);
+  z-index: 5;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  filter: blur(38px) brightness(1.25);
+  transform: scale(0.94);
+  transform-origin: center center;
+  will-change: filter, opacity, transform;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: 
+    filter 1.6s cubic-bezier(0.43, 0.195, 0.02, 1),
+    opacity 1.5s cubic-bezier(0.43, 0.195, 0.02, 1),
+    transform 1.6s cubic-bezier(0.43, 0.195, 0.02, 1),
+    visibility 1.6s;
+}
+
+/* Estado Ativo: Nitidez Completa, Visibilidade Total e Escala Normal */
+.orbit-testimonials.is-active {
+  z-index: 30;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  filter: blur(0px) brightness(1);
+  transform: scale(1);
+}
+
+/* Estado de Saída ao Retornar */
+.orbit-testimonials.is-exiting {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  filter: blur(38px) brightness(1.25);
+  transform: scale(0.94);
+}
+
+/* Camada de Fundo Cenográfico & Iluminação Aeronáutica */
+.orbit-testimonials__backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Gradientes Radiais Atmosféricos (Ciano Aeronáutico e Âmbar de Pista) */
+.orbit-testimonials__glow-top {
+  position: absolute;
+  top: -15%;
+  left: 20%;
+  width: 60vw;
+  height: 50vh;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(56, 189, 248, 0.09), transparent 70%);
+  filter: blur(50px);
+}
+
+.orbit-testimonials__glow-bottom {
+  position: absolute;
+  bottom: -20%;
+  right: 10%;
+  width: 50vw;
+  height: 45vh;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(245, 158, 11, 0.05), transparent 70%);
+  filter: blur(60px);
+}
+
+/* Malha Sutil de Telemetria e Coordenadas no Fundo */
+.orbit-testimonials__grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 80px 80px;
+  background-position: center center;
+  opacity: 0.5;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
+  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
+}
+
+/* Scrim de Vinheta Periférica para Profundidade de Campo */
+.orbit-testimonials__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 35%, rgba(6, 8, 12, 0.75) 100%);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   HEADER SUPERIOR DA QUARTA DOBRA
+   ========================================================================== */
+
+.orbit-testimonials__header {
+  padding: clamp(18px, 3vh, 36px) clamp(24px, 5.2vw, 100px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 20;
+}
+
+/* Botão de Retorno à Terceira Dobra ("Portfólio 3D") */
+.orbit-testimonials__back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(14, 18, 25, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border-subtle, rgba(255, 255, 255, 0.15));
+  padding: 10px 22px;
+  border-radius: 999px;
+  color: var(--color-text-primary, #ffffff);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.orbit-testimonials__back-btn svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.orbit-testimonials__back-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.45);
+  transform: translateX(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.orbit-testimonials__back-btn:hover svg {
+  transform: translateX(-3px);
+}
+
+/* ==========================================================================
+   CONTEÚDO PRINCIPAL: CABEÇALHO EDITORIAL (INTRODUÇÃO)
+   ========================================================================== */
+
+.orbit-testimonials__content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  padding: 0 0 clamp(8px, 1.5vh, 20px) 0;
+}
+
+.orbit-testimonials__intro {
+  padding: 0 clamp(24px, 5.2vw, 100px);
+  margin-bottom: clamp(14px, 2.2vh, 32px);
+  max-width: 1440px;
+}
+
+.orbit-testimonials__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 0.55rem;
+}
+
+.orbit-testimonials__tag-text {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 700;
+}
+
+.orbit-testimonials__tag-line {
+  width: 65px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.3), transparent);
+}
+
+/* Headline Editorial ("Confiança Comprovada.") */
+.orbit-testimonials__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 3.8vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  margin: 0;
+}
+
+.orbit-testimonials__title-italic {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.72);
+  margin-right: 0.3em;
+  letter-spacing: 0;
+}
+
+.orbit-testimonials__title-bold {
+  display: inline-block;
+  color: #ffffff;
+  text-transform: capitalize;
+}
+
+.orbit-testimonials__subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(0.92rem, 1.1vw, 1.05rem);
+  color: var(--color-text-secondary, rgba(226, 232, 240, 0.78));
+  line-height: 1.6;
+  max-width: 680px;
+  margin-top: 0.75rem;
+  font-weight: 400;
+}
+
+/* ==========================================================================
+   CARROSSEL INFINITO (MARQUEE CONTAINER & TRACK)
+   Inspirado no Aura Shield com mascara de degradê bilateral e pause no hover
+   ========================================================================== */
+
+.orbit-marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: clamp(10px, 1.8vh, 22px) 0;
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  cursor: grab;
+}
+
+.orbit-marquee.is-grabbing {
+  cursor: grabbing;
+}
+
+.orbit-marquee__track {
+  display: flex;
+  gap: clamp(20px, 2.2vw, 32px);
+  width: max-content;
+  animation: marqueeScrollOrbit 45s linear infinite;
+  will-change: transform;
+}
+
+.orbit-marquee__track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScrollOrbit {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - (clamp(20px, 2.2vw, 32px) / 2)));
+  }
+}
+
+/* ==========================================================================
+   CARD DE DEPOIMENTO & MICROINTERAÇÕES PREMIUM
+   - Flashlight Specular Glow (--mouse-x, --mouse-y)
+   - 3D Tilt suave no desktop
+   - Borda com gradiente cromático e acento azul aeronáutico
+   ========================================================================== */
+
+.orbit-testimonial-card {
+  width: clamp(350px, 27vw, 450px);
+  min-height: clamp(300px, 34vh, 370px);
+  background: rgba(14, 18, 25, 0.65);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: clamp(22px, 2.4vw, 32px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-shrink: 0;
+  position: relative;
+  isolation: isolate;
+  box-shadow:
+    inset 0 0 30px rgba(255, 255, 255, 0.012),
+    0 15px 35px rgba(0, 0, 0, 0.45);
+  transition: 
+    background-color 0.45s ease,
+    border-color 0.45s ease,
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Camada Flashlight / Spotlight Direcional acionada pelo cursor */
+.orbit-testimonial-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    700px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(56, 189, 248, 0.12),
+    transparent 45%
+  );
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Filete Perimétrico de Borda Refinada com Gradiente */
+.orbit-testimonial-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 45%, rgba(56, 189, 248, 0.25));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.45s ease;
+}
+
+/* Estado Hover do Card de Depoimento */
+.orbit-testimonial-card:hover {
+  background: rgba(20, 26, 38, 0.85);
+  border-color: rgba(56, 189, 248, 0.55);
+  transform: translateY(-8px) scale(1.015);
+  box-shadow:
+    0 0 32px rgba(56, 189, 248, 0.25),
+    inset 0 0 20px rgba(56, 189, 248, 0.08),
+    0 25px 50px rgba(0, 0, 0, 0.65);
+}
+
+.orbit-testimonial-card:hover::before {
+  opacity: 1;
+}
+
+.orbit-testimonial-card:hover::after {
+  opacity: 1;
+}
+
+/* Elementos Internos do Card (Garante sobreposição correta) */
+.orbit-testimonial-card > * {
+  position: relative;
+  z-index: 3;
+}
+
+/* Barra Superior do Card: Ícone de Citação e Tag de Instalação Aeronáutica */
+.orbit-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.orbit-card__quote-icon {
+  font-size: 2.8rem;
+  font-family: var(--font-display);
+  color: var(--color-accent-blue, #38bdf8);
+  line-height: 1;
+  opacity: 0.75;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.orbit-testimonial-card:hover .orbit-card__quote-icon {
+  transform: scale(1.1) translateY(-2px);
+  opacity: 1;
+  text-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+}
+
+/* Tag de Instalação / Localização Aeronáutica */
+.orbit-card__facility-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent-blue, #38bdf8);
+}
+
+.orbit-card__facility-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--color-accent-blue, #38bdf8);
+  box-shadow: 0 0 6px var(--color-accent-blue, #38bdf8);
+}
+
+/* Texto do Depoimento */
+.orbit-card__text {
+  font-family: var(--font-body);
+  font-size: clamp(0.92rem, 1.05vw, 1.02rem);
+  color: rgba(248, 250, 252, 0.88);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+  font-style: italic;
+  flex: 1;
+}
+
+/* Rodapé do Card: Foto do Autor, Nome, Cargo e Empresa */
+.orbit-card__author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.orbit-card__avatar-wrap {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+
+.orbit-card__avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.orbit-testimonial-card:hover .orbit-card__avatar {
+  border-color: var(--color-accent-blue, #38bdf8);
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.3);
+}
+
+.orbit-card__author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.orbit-card__author-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.orbit-card__verified-icon {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent-blue, #38bdf8);
+}
+
+.orbit-card__author-role {
+  font-family: var(--font-display);
+  font-size: 0.73rem;
+  font-weight: 500;
+  color: var(--color-accent-blue, #38bdf8);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.orbit-card__author-company {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  color: var(--color-text-muted, rgba(148, 163, 184, 0.7));
+  letter-spacing: 0.02em;
+}
+
+/* ==========================================================================
+   RODAPÉ DA QUARTA DOBRA: NAVEGAÇÃO E AÇÃO
+   ========================================================================== */
+
+.orbit-testimonials__footer {
+  padding: clamp(14px, 2.5vh, 28px) clamp(24px, 5.2vw, 100px);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  z-index: 20;
+}
+
+/* Indicador e Botão Interativo de Scroll para o FAQ */
+.orbit-testimonials__scroll-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 8px 18px;
+  border-radius: 999px;
+  color: var(--color-text-primary, #ffffff);
+  font-family: var(--font-display);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.orbit-testimonials__scroll-cue:hover {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: var(--color-accent-blue, #38bdf8);
+  color: #ffffff;
+  transform: translateY(2px);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+}
+
+.orbit-testimonials__scroll-icon {
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent-blue, #38bdf8);
+  animation: bounceDownCue 1.8s infinite ease-in-out;
+}
+
+@keyframes bounceDownCue {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE (TABLET & MOBILE)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .orbit-testimonial-card {
+    width: 360px;
+    min-height: 310px;
+  }
+}
+
+@media (max-width: 768px) {
+  .orbit-testimonials__header {
+    padding: 16px 20px;
+  }
+
+  .orbit-testimonials__intro {
+    padding: 0 20px;
+    margin-bottom: 12px;
+  }
+
+  .orbit-testimonials__title {
+    font-size: 2rem;
+  }
+
+  .orbit-testimonials__subtitle {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .orbit-testimonial-card {
+    width: 300px;
+    min-height: 280px;
+    padding: 20px;
+  }
+
+  .orbit-card__text {
+    font-size: 0.88rem;
+    margin-bottom: 1rem;
+  }
+
+  .orbit-testimonials__footer {
+    padding: 14px 20px;
+    justify-content: flex-end;
+  }
+}

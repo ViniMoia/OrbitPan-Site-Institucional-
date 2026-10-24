@@ -1,0 +1,137 @@
+/* ==========================================================================
+   ORBITPAN — RETÍCULO AERONÁUTICO / CUSTOM CURSOR DESIGN SYSTEM
+   Experimento de Cursor Personalizado com Microinterações de Alta Fidelidade
+   Fácil reversão: basta remover ou desativar este arquivo e custom-cursor.js
+   ========================================================================== */
+
+/* Apenas ativa o cursor customizado em dispositivos desktop com mouse de precisão */
+@media (hover: hover) and (pointer: fine) {
+
+  /* Oculta o cursor nativo universalmente em todas as dobras e elementos */
+  html.orbit-custom-cursor-active,
+  html.orbit-custom-cursor-active * {
+    cursor: none !important;
+  }
+
+  /* Ponto Central de Precisão Aeronáutica */
+  .orbit-cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10001;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+    opacity: 0;
+    transition: 
+      opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, left, top;
+  }
+
+  /* Anel Orbital Externo Fluido (Inversão Óptica / Difference Blend Mode) */
+  .orbit-cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1.4px solid #ffffff;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+    opacity: 0;
+    transition: 
+      opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      width 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+      height 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.3s ease,
+      border-width 0.3s ease,
+      background-color 0.3s ease;
+    will-change: transform, left, top, width, height;
+  }
+
+  /* Estado Visível (ao movimentar o mouse na janela) */
+  .orbit-cursor-dot.is-visible,
+  .orbit-cursor-ring.is-visible {
+    opacity: 1;
+  }
+
+  /* ==========================================================================
+     MICROINTERAÇÕES
+     ========================================================================== */
+
+  /* 1. Microinteração de Hover em Botões, Links e Cards (Expansão de Lente) */
+  .orbit-cursor-ring.is-hover {
+    width: 58px;
+    height: 58px;
+    border-width: 1.6px;
+    background-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .orbit-cursor-dot.is-hover {
+    transform: translate(-50%, -50%) scale(1.6);
+  }
+
+  /* 2. Microinteração de Clique / Mouse Down (Feedback Tátil Imediato) */
+  .orbit-cursor-ring.is-down {
+    width: 24px;
+    height: 24px;
+    border-width: 2px;
+    transition-duration: 0.1s;
+  }
+
+  .orbit-cursor-dot.is-down {
+    transform: translate(-50%, -50%) scale(0.65);
+    transition-duration: 0.1s;
+  }
+
+  /* 3. Microinteração em Exploração 360° (Grab / Grabbing no Canvas WebGL) */
+  .orbit-cursor-ring.is-grab {
+    border-style: dashed;
+    width: 38px;
+    height: 38px;
+    animation: orbitRingRotate 10s linear infinite;
+  }
+
+  .orbit-cursor-ring.is-grabbing {
+    border-style: solid;
+    width: 26px;
+    height: 26px;
+    border-width: 2px;
+    animation: none;
+  }
+
+  @keyframes orbitRingRotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  /* 4. Modo de Texto / Inputs */
+  .orbit-cursor-ring.is-text {
+    width: 4px;
+    height: 24px;
+    border-radius: 2px;
+    background-color: #ffffff;
+    border: none;
+  }
+
+  .orbit-cursor-dot.is-text {
+    opacity: 0;
+  }
+
+}
+
+/* Dispositivos móveis, touch ou preferências de movimento reduzido */
+@media (hover: none) or (pointer: coarse) {
+  .orbit-cursor-dot,
+  .orbit-cursor-ring {
+    display: none !important;
+  }
+}

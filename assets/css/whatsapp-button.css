@@ -1,0 +1,165 @@
+/* ==========================================================================
+   ORBITPAN — WHATSAPP FLOATING ACTION BUTTON
+   Inspirado no projeto de referência Vértice Ferramental
+   Aparece apenas a partir da Segunda Dobra, fixo no canto inferior direito
+   ========================================================================== */
+
+:root {
+  --wa-primary-green: #005829;
+  --wa-light-green: #7BB04A;
+  --wa-brand-green: #25D366;
+  --wa-yellow-gold: #FFC000;
+  --wa-ease-ultra-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.whatsapp-btn {
+  position: fixed;
+  bottom: 36px;
+  right: 36px;
+  z-index: 998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--wa-light-green), var(--wa-primary-green));
+  color: #ffffff;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(0, 88, 41, 0.35), 0 0 0 0 rgba(123, 176, 74, 0.7);
+  opacity: 0;
+  transform: scale(0.6) translateY(20px);
+  visibility: hidden;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: 
+    opacity 0.45s var(--wa-ease-ultra-smooth), 
+    transform 0.45s var(--wa-ease-ultra-smooth), 
+    visibility 0.45s,
+    background 0.3s,
+    box-shadow 0.3s,
+    border-color 0.3s;
+  cursor: pointer;
+  outline: none;
+  animation: whatsappPulse 2s infinite;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Pulsing effect in background */
+@keyframes whatsappPulse {
+  0% {
+    box-shadow: 0 4px 20px rgba(0, 88, 41, 0.35), 0 0 0 0 rgba(123, 176, 74, 0.7);
+  }
+  70% {
+    box-shadow: 0 4px 20px rgba(0, 88, 41, 0.35), 0 0 0 15px rgba(123, 176, 74, 0);
+  }
+  100% {
+    box-shadow: 0 4px 20px rgba(0, 88, 41, 0.35), 0 0 0 0 rgba(123, 176, 74, 0);
+  }
+}
+
+/* Estado Visível (A partir da 2ª dobra) */
+.whatsapp-btn.visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.whatsapp-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.4s var(--wa-ease-ultra-smooth);
+}
+
+.whatsapp-btn svg {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+
+/* Microinteração de Hover: Escala, Brilho, Borda Dourada e Wiggle */
+.whatsapp-btn:hover {
+  transform: scale(1.08) translateY(-3px);
+  background: linear-gradient(135deg, var(--wa-brand-green), var(--wa-primary-green));
+  box-shadow: 0 8px 30px rgba(0, 88, 41, 0.45), 0 0 18px rgba(255, 192, 0, 0.3);
+  border: 1px solid var(--wa-yellow-gold);
+}
+
+.whatsapp-btn:hover .whatsapp-icon-container {
+  animation: whatsappWiggle 0.6s ease-in-out;
+}
+
+@keyframes whatsappWiggle {
+  0% { transform: rotate(0deg); }
+  15% { transform: rotate(-12deg); }
+  30% { transform: rotate(12deg); }
+  45% { transform: rotate(-6deg); }
+  60% { transform: rotate(6deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Tooltip text bubble ("Fale Conosco") */
+.whatsapp-tooltip {
+  position: absolute;
+  right: 76px;
+  background: rgba(15, 15, 15, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-family: var(--font-body, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(12px);
+  transition: opacity 0.35s var(--wa-ease-ultra-smooth), transform 0.35s var(--wa-ease-ultra-smooth);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+}
+
+/* Revelação do Tooltip (ao passar o mouse ou por gatilho com .active) */
+.whatsapp-btn:hover .whatsapp-tooltip,
+.whatsapp-tooltip.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Responsividade Mobile e Telas Menores */
+@media (max-width: 768px) {
+  .whatsapp-btn {
+    bottom: 24px;
+    right: 24px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .whatsapp-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .whatsapp-tooltip {
+    right: 64px;
+    padding: 8px 16px;
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-btn {
+    animation: none;
+    transition: opacity 0.2s, visibility 0.2s;
+  }
+  .whatsapp-btn:hover .whatsapp-icon-container {
+    animation: none;
+  }
+}

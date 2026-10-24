@@ -1,0 +1,109 @@
+/* ==========================================================================
+   ORBITPAN — BARRA SUPERIOR DE EXPLORAÇÃO DO SITE
+   Design System de Alta Fidelidade: Preto Profundo & Azul Aeronáutico
+   Máxima performance: transform: scaleX com aceleração via Compositor GPU
+   ========================================================================== */
+
+.orbit-exploration-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2.5px;
+  z-index: 9999;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Trilho de Fundo */
+.orbit-exploration-bar__track {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Barra de Preenchimento Ativa */
+.orbit-exploration-bar__fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #0284c7 0%, #38bdf8 70%, #7dd3fc 100%);
+  transform-origin: left center;
+  transform: scaleX(0);
+  will-change: transform;
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+}
+
+/* Centelha Luminosa na Extremidade Ativa */
+.orbit-exploration-bar__spark {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(50%, -50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  box-shadow: 0 0 8px #38bdf8, 0 0 16px rgba(56, 189, 248, 0.95);
+  pointer-events: none;
+}
+
+/* Micro-Badge HUD de Telemetria (Porcentagem) */
+.orbit-exploration-bar__badge {
+  position: absolute;
+  top: 8px;
+  right: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  background-color: rgba(6, 8, 12, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: var(--font-body, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #38bdf8;
+  font-variant-numeric: tabular-nums;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+/* Ponto pulsante dentro do badge */
+.orbit-exploration-bar__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #38bdf8;
+  box-shadow: 0 0 6px #38bdf8;
+  display: inline-block;
+}
+
+/* Revelação durante atividade / navegação */
+.orbit-exploration-bar__badge.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .orbit-exploration-bar {
+    height: 2px;
+  }
+
+  .orbit-exploration-bar__badge {
+    right: 16px;
+    top: 6px;
+    padding: 2px 8px;
+    font-size: 10px;
+  }
+}

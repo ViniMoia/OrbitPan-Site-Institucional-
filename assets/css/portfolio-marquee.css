@@ -1,0 +1,269 @@
+/* ==========================================================================
+   ORBITPAN — CARROSSEL INFINITO DE LOGOS: PROJETOS & TRAJETÓRIA
+   Local: Terceira Dobra (Portfólio & Espaços Aéreos) — Opção 2 (Abaixo do Botão de Transição)
+   Design System: Obsidian, Aeronautical Blue (#38bdf8 / #3b82f6) & Titânio Translúcido
+   Totalmente isolado para facilitar reversão sem qualquer impacto na timeline.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Bloco Contêiner Principal
+   -------------------------------------------------------------------------- */
+.pf-marquee-block {
+  position: relative;
+  width: 100%;
+  margin: 3.75rem auto 1rem auto;
+  z-index: 15;
+  user-select: none;
+}
+
+/* --------------------------------------------------------------------------
+   2. Kicker Superior ("— PROJETOS E TRAJETÓRIA")
+   -------------------------------------------------------------------------- */
+.pf-marquee-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding-left: 0.25rem;
+}
+
+.pf-marquee-kicker__dash {
+  color: var(--color-accent-blue, #38bdf8);
+  font-family: var(--font-display, 'Oswald', sans-serif);
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.pf-marquee-kicker__text {
+  font-family: var(--font-sans, 'Inter', -apple-system, sans-serif);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(226, 232, 240, 0.75);
+  display: inline-block;
+}
+
+/* --------------------------------------------------------------------------
+   3. Trilho de Rolagem com Borda Dupla Delimitadora & Máscara de Degradê
+   -------------------------------------------------------------------------- */
+.pf-marquee-rail {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 2.2rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(
+    180deg, 
+    rgba(255, 255, 255, 0.015) 0%, 
+    rgba(14, 22, 36, 0.25) 50%, 
+    rgba(255, 255, 255, 0.015) 100%
+  );
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  cursor: grab;
+}
+
+.pf-marquee-rail.is-grabbing {
+  cursor: grabbing;
+}
+
+/* --------------------------------------------------------------------------
+   4. Pista de Animação Contínua (GPU-Accelerated)
+   -------------------------------------------------------------------------- */
+.pf-marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: pfMarqueeScroll 38s linear infinite;
+}
+
+.pf-marquee-rail:hover .pf-marquee-track {
+  animation-play-state: paused;
+}
+
+.pf-marquee-group {
+  display: flex;
+  align-items: center;
+  gap: clamp(40px, 4.5vw, 75px);
+  padding-right: clamp(40px, 4.5vw, 75px);
+}
+
+@keyframes pfMarqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. Logos Vetoriais & Microinterações
+   -------------------------------------------------------------------------- */
+.pf-marquee-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.25rem;
+  color: rgba(248, 250, 252, 0.52);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.pf-marquee-logo:hover,
+.pf-marquee-logo:focus-visible {
+  color: #ffffff;
+  transform: translateY(-2px) scale(1.05);
+  filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.4));
+  outline: none;
+}
+
+.pf-marquee-logo svg {
+  height: 42px;
+  width: auto;
+  max-width: 195px;
+  display: block;
+  fill: currentColor;
+}
+
+/* --------------------------------------------------------------------------
+   6. Sub-barra de Metadados Inferior & Indicador Aeronáutico
+   -------------------------------------------------------------------------- */
+.pf-marquee-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.25rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  font-family: var(--font-sans, 'Inter', -apple-system, sans-serif);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  color: rgba(148, 163, 184, 0.65);
+  text-transform: uppercase;
+}
+
+.pf-marquee-meta__list {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.pf-marquee-meta__item {
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.25s ease;
+}
+
+.pf-marquee-meta__item:hover {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.pf-marquee-meta__sep {
+  color: rgba(255, 255, 255, 0.14);
+  font-weight: 300;
+}
+
+/* Retículo Circular no Canto Direito */
+.pf-marquee-meta__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.pf-marquee-meta__reticle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  position: relative;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pf-marquee-meta__reticle-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-accent-blue, #38bdf8);
+  box-shadow: 0 0 8px var(--color-accent-blue, #38bdf8);
+  animation: pfReticlePulse 2.4s ease-in-out infinite;
+}
+
+.pf-marquee-meta__status:hover .pf-marquee-meta__reticle {
+  border-color: var(--color-accent-blue, #38bdf8);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
+}
+
+@keyframes pfReticlePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 1;
+    box-shadow: 0 0 12px var(--color-accent-blue, #38bdf8);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. Responsividade & Acessibilidade
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .pf-marquee-block {
+    margin: 2.75rem auto 1rem auto;
+  }
+
+  .pf-marquee-rail {
+    padding: 1.6rem 0;
+  }
+
+  .pf-marquee-logo svg {
+    height: 34px;
+    max-width: 160px;
+  }
+
+  .pf-marquee-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+
+  .pf-marquee-meta__status {
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 640px) {
+  .pf-marquee-logo svg {
+    height: 28px;
+    max-width: 135px;
+  }
+
+  .pf-marquee-meta__list {
+    gap: 0.75rem;
+    font-size: 0.625rem;
+  }
+
+  .pf-marquee-group {
+    gap: 30px;
+    padding-right: 30px;
+  }
+}
+
+/* Respeito a usuários com sensibilidade a movimento */
+@media (prefers-reduced-motion: reduce) {
+  .pf-marquee-track {
+    animation-duration: 90s;
+  }
+  .pf-marquee-meta__reticle-dot {
+    animation: none;
+  }
+}

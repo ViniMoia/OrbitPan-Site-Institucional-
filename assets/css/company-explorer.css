@@ -1,0 +1,804 @@
+/* ==========================================================================
+   ORBITPAN — SEGUNDA DOBRA (APRESENTAÇÃO IMERSIVA 360° DA EMPRESA)
+   Inspirado no padrão de linha guia horizontal e controlador 360° da referência
+   ========================================================================== */
+
+.orbit-explorer {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  user-select: none;
+  cursor: grab;
+  background-color: var(--color-base);
+  z-index: 5;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  filter: blur(38px) brightness(1.25);
+  transform: scale(0.94);
+  transform-origin: center center;
+  will-change: filter, opacity, transform;
+  transition: 
+    filter 1.6s cubic-bezier(0.43, 0.195, 0.02, 1),
+    opacity 1.5s cubic-bezier(0.43, 0.195, 0.02, 1),
+    transform 1.6s cubic-bezier(0.43, 0.195, 0.02, 1),
+    visibility 1.6s;
+}
+
+/* Estado Ativo: Nitidez Completa, Revelação de 100% de Opacidade e Escala Normal */
+.orbit-explorer.is-active {
+  z-index: 15;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  filter: blur(0px) brightness(1);
+  transform: scale(1);
+}
+
+/* Estado de Saída ao Retornar */
+.orbit-explorer.is-exiting {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  filter: blur(38px) brightness(1.25);
+  transform: scale(0.94);
+}
+
+.orbit-explorer:active,
+.orbit-explorer.is-dragging {
+  cursor: grabbing;
+}
+
+/* Canvas WebGL em tela cheia */
+.orbit-explorer__canvas-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.orbit-explorer__canvas-wrap canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Scrim Cinematográfico Suave: preserva fidelidade da cena 360 */
+.orbit-explorer__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: 
+    radial-gradient(ellipse 80% 70% at 20% 50%, rgba(6, 8, 12, 0.65) 0%, rgba(6, 8, 12, 0.25) 50%, transparent 80%),
+    linear-gradient(to bottom, rgba(6, 8, 12, 0.6) 0%, transparent 20%, transparent 80%, rgba(6, 8, 12, 0.7) 100%),
+    radial-gradient(circle at center, transparent 65%, rgba(6, 8, 12, 0.3) 100%);
+}
+
+/* ==========================================================================
+   HUD CENTRAL: LINHA HORIZONTAL GUIA E INDICADOR (EIXO Y CENTRALIZADO)
+   ========================================================================== */
+
+.orbit-explorer__hud {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Linha horizontal contínua de 1px cortando toda a largura no centro exato */
+.orbit-explorer__line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.38);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1.4s cubic-bezier(0.19, 1, 0.22, 1);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
+}
+
+.orbit-explorer.is-in-view .orbit-explorer__line,
+.orbit-explorer.is-active .orbit-explorer__line {
+  transform: scaleX(1);
+}
+
+/* ==========================================================================
+   NAVEGAÇÃO SUPERIOR DE RETORNO (VOLTAR AO HANGAR)
+   ========================================================================== */
+
+.orbit-explorer__top-nav {
+  position: absolute;
+  top: clamp(20px, 3.5vh, 40px);
+  left: clamp(24px, 5.2vw, 100px);
+  right: clamp(24px, 5.2vw, 100px);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  z-index: 25;
+  pointer-events: none;
+}
+
+.orbit-explorer__top-nav > * {
+  pointer-events: auto;
+}
+
+/* Botão de Retorno à Hero ("Vista do Hangar")
+   Reconstruído com o mesmo design e microinteração do botão Portifólio */
+.orbit-back-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 30px;
+  border-radius: 999px;
+  background-color: transparent;
+  color: var(--color-text-primary);
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1.5px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
+  isolation: isolate;
+  cursor: pointer;
+  outline: none;
+  transition: color 0.45s cubic-bezier(0.19, 1, 0.22, 1),
+              border-color 0.35s ease,
+              box-shadow 0.45s cubic-bezier(0.19, 1, 0.22, 1),
+              transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Camada de Preenchimento Branco Animada (Microinteração Direcional GPU-accelerated) */
+.orbit-back-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: #ffffff;
+  border-radius: 999px;
+  transform: translateY(100%);
+  transition: transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+  will-change: transform;
+  z-index: 0;
+}
+
+/* Elementos Internos: Texto e Ícone mantidos em camada superior com transição de cor */
+.orbit-back-btn > * {
+  position: relative;
+  z-index: 1;
+  transition: color 0.45s cubic-bezier(0.19, 1, 0.22, 1),
+              stroke 0.45s cubic-bezier(0.19, 1, 0.22, 1),
+              transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.orbit-back-btn__icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.orbit-back-btn__icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+}
+
+/* Estado Hover: Fundo branco sobe, tipografia/ícone invertem para preto */
+.orbit-back-btn:hover {
+  color: #06080c;
+  border-color: #ffffff;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 24px rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px);
+}
+
+.orbit-back-btn:hover::before {
+  transform: translateY(0);
+}
+
+.orbit-back-btn:hover .orbit-back-btn__icon {
+  transform: translateX(-4px);
+}
+
+.orbit-back-btn:active {
+  transform: translateY(1px);
+}
+
+/* Ponto de Ancoragem Inicial do Título e do Cursor sobre a linha */
+.orbit-explorer__anchor {
+  position: absolute;
+  left: clamp(40px, 8vw, 140px);
+  top: 0;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  will-change: transform;
+  pointer-events: auto;
+}
+
+/* Título e Badge posicionados acima da linha e com folga do botão circular */
+.orbit-explorer__title-wrap {
+  position: absolute;
+  bottom: clamp(48px, 6.2vh, 62px);
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap;
+}
+
+.orbit-explorer__badge {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--color-accent-amber);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  opacity: 0.95;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.orbit-explorer__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4.2vw, 4.2rem);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  display: flex;
+  flex-direction: column;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.85), 0 1px 3px rgba(0, 0, 0, 0.7);
+  transition: opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1), transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Efeito de fade sutil no título durante rotação rápida */
+.orbit-explorer.is-rotating .orbit-explorer__title {
+  opacity: 0.35;
+  transform: translateY(-4px);
+}
+
+/* Indicador Circular Cromaticamente Contrastante (Inspirado no design de referência) */
+.orbit-explorer__cursor {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: rgba(14, 18, 25, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 0 24px rgba(245, 158, 11, 0.25), 0 4px 16px rgba(0, 0, 0, 0.5);
+  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.4s ease;
+}
+
+/* Anel externo SVG */
+.cursor-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.cursor-ring circle {
+  fill: transparent;
+  stroke: var(--color-accent-amber);
+  stroke-width: 2px;
+  transition: stroke-width 0.3s ease, stroke 0.3s ease;
+  animation: explorerRingPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes explorerRingPulse {
+  0%, 100% {
+    stroke-opacity: 0.75;
+    transform: scale(1);
+    transform-origin: center;
+  }
+  50% {
+    stroke-opacity: 1;
+    transform: scale(1.08);
+    transform-origin: center;
+  }
+}
+
+/* Setas internas indicando affordance de giro */
+.cursor-arrows {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  color: var(--color-text-primary);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.arrow-hint {
+  opacity: 0.35;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.arrow-hint--active {
+  opacity: 1;
+  color: #ffffff;
+  animation: explorerArrowBounce 1.6s ease-in-out infinite;
+}
+
+@keyframes explorerArrowBounce {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(3px); }
+}
+
+.orbit-explorer__cursor:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 32px rgba(245, 158, 11, 0.45), 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.orbit-explorer__cursor:hover .cursor-ring circle {
+  stroke-width: 2.5px;
+}
+
+/* ==========================================================================
+   TIMELINE E BLOCOS INFORMATIVOS AO LONGO DOS 360°
+   ========================================================================== */
+
+.orbit-explorer__timeline {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+  z-index: 12;
+  pointer-events: none;
+}
+
+.orbit-explorer__track {
+  position: relative;
+  width: 100%;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Cards interativos ancorados na linha */
+.orbit-card-waypoint {
+  position: absolute;
+  top: 0;
+  transform: translateY(-50%);
+  pointer-events: auto;
+  opacity: 1;
+  will-change: left;
+}
+
+/* Ponto / Nó visual sobre a linha */
+.orbit-card-waypoint__dot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--color-base);
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.19, 1, 0.22, 1),
+              border-color 0.35s ease,
+              background-color 0.35s ease,
+              box-shadow 0.35s ease;
+}
+
+.orbit-card-waypoint:hover .orbit-card-waypoint__dot,
+.orbit-card-waypoint.is-active .orbit-card-waypoint__dot {
+  background-color: var(--color-accent-amber);
+  border-color: #ffffff;
+  transform: translate(-50%, -50%) scale(1.4);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.9);
+}
+
+/* Conteúdo do Card */
+.orbit-card-waypoint__content {
+  width: clamp(300px, 32vw, 420px);
+  padding: 24px 28px;
+  border-radius: 12px;
+  background: rgba(14, 18, 25, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1),
+              transform 0.5s cubic-bezier(0.19, 1, 0.22, 1),
+              border-color 0.3s ease;
+}
+
+.orbit-card-waypoint:hover .orbit-card-waypoint__content,
+.orbit-card-waypoint.is-active .orbit-card-waypoint__content {
+  opacity: 1;
+  pointer-events: auto;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Variação Superior (acima da linha) */
+.orbit-card-waypoint__content--top {
+  position: absolute;
+  bottom: 24px;
+  left: -20px;
+  transform: translateY(16px);
+}
+
+.orbit-card-waypoint:hover .orbit-card-waypoint__content--top,
+.orbit-card-waypoint.is-active .orbit-card-waypoint__content--top {
+  transform: translateY(0);
+}
+
+/* Variação Inferior (abaixo da linha) */
+.orbit-card-waypoint__content--bottom {
+  position: absolute;
+  top: 24px;
+  left: -20px;
+  transform: translateY(-16px);
+}
+
+.orbit-card-waypoint:hover .orbit-card-waypoint__content--bottom,
+.orbit-card-waypoint.is-active .orbit-card-waypoint__content--bottom {
+  transform: translateY(0);
+}
+
+.orbit-card-waypoint__step {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--color-accent-blue);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.orbit-card-waypoint__heading {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  margin-bottom: 10px;
+}
+
+.orbit-card-waypoint__text {
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================================================
+   RODAPÉ DA DOBRA: IDENTIFICAÇÃO E NAVEGAÇÃO DE CAPÍTULOS
+   ========================================================================== */
+
+.orbit-explorer__footer {
+  position: absolute;
+  bottom: clamp(28px, 4.5vh, 48px);
+  left: 0;
+  width: 100%;
+  padding: 0 clamp(24px, 5vw, 100px);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  z-index: 15;
+  pointer-events: none;
+}
+
+.orbit-explorer__footer > * {
+  pointer-events: auto;
+}
+
+/* Botão de Acesso ao Portifólio (Canto Inferior Esquerdo)
+   Mesmo design e microinteração do botão Solicitar Visita */
+.orbit-btn-portfolio {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 30px;
+  border-radius: 999px;
+  background-color: transparent;
+  color: var(--color-text-primary);
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1.5px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
+  isolation: isolate;
+  cursor: pointer;
+  outline: none;
+  transition: color 0.45s cubic-bezier(0.19, 1, 0.22, 1),
+              border-color 0.35s ease,
+              box-shadow 0.45s cubic-bezier(0.19, 1, 0.22, 1),
+              transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Camada de Preenchimento Branco Animada (Microinteração Direcional GPU-accelerated) */
+.orbit-btn-portfolio::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: #ffffff;
+  border-radius: 999px;
+  transform: translateY(100%);
+  transition: transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+  will-change: transform;
+  z-index: 0;
+}
+
+/* Elementos Internos: Texto e Ícone mantidos em camada superior com transição de cor */
+.orbit-btn-portfolio > * {
+  position: relative;
+  z-index: 1;
+  transition: color 0.45s cubic-bezier(0.19, 1, 0.22, 1),
+              stroke 0.45s cubic-bezier(0.19, 1, 0.22, 1),
+              transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.orbit-btn-portfolio__icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.orbit-btn-portfolio__icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+}
+
+/* Estado Hover: Fundo branco sobe, tipografia/ícone invertem para preto */
+.orbit-btn-portfolio:hover {
+  color: #06080c;
+  border-color: #ffffff;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 24px rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px);
+}
+
+.orbit-btn-portfolio:hover::before {
+  transform: translateY(0);
+}
+
+.orbit-btn-portfolio:hover .orbit-btn-portfolio__icon {
+  transform: translateX(4px);
+}
+
+.orbit-btn-portfolio:active {
+  transform: translateY(1px);
+}
+
+/* Navegação por Setas e Contador */
+.orbit-explorer__nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(14, 18, 25, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.orbit-nav-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-text-primary);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease, color 0.25s ease;
+}
+
+.orbit-nav-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.orbit-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.orbit-nav-btn:active {
+  transform: scale(0.95);
+}
+
+.orbit-explorer__counter {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--color-text-primary);
+  min-width: 58px;
+  text-align: center;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE (MOBILE & TABLET)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .orbit-explorer__anchor {
+    left: 20px;
+    gap: 16px;
+  }
+
+  .orbit-explorer__title-wrap {
+    bottom: 42px;
+  }
+
+  .orbit-explorer__title {
+    font-size: 2rem;
+  }
+
+  /* Centralização precisa do card sobre o ponto guia (dot) no mobile */
+  .orbit-card-waypoint__content {
+    width: 340px;
+    max-width: calc(100vw - 24px);
+    box-sizing: border-box;
+    padding: 18px 20px;
+    left: 0;
+  }
+
+  /* Variação Superior no Mobile */
+  .orbit-card-waypoint__content--top {
+    left: 0;
+    bottom: 24px;
+    transform: translate(-50%, 16px);
+  }
+
+  .orbit-card-waypoint:hover .orbit-card-waypoint__content--top,
+  .orbit-card-waypoint.is-active .orbit-card-waypoint__content--top {
+    transform: translate(-50%, 0);
+  }
+
+  /* Variação Inferior no Mobile */
+  .orbit-card-waypoint__content--bottom {
+    left: 0;
+    top: 24px;
+    transform: translate(-50%, -16px);
+  }
+
+  .orbit-card-waypoint:hover .orbit-card-waypoint__content--bottom,
+  .orbit-card-waypoint.is-active .orbit-card-waypoint__content--bottom {
+    transform: translate(-50%, 0);
+  }
+
+  .orbit-card-waypoint__heading {
+    font-size: 1.2rem;
+  }
+
+  .orbit-card-waypoint__text {
+    font-size: 0.85rem;
+    overflow-wrap: break-word;
+  }
+
+  .orbit-explorer__footer {
+    padding: 0 20px;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .orbit-back-btn,
+  .orbit-btn-portfolio {
+    padding: 9px 18px;
+    font-size: 0.75rem;
+    gap: 8px;
+  }
+
+  .orbit-back-btn__icon,
+  .orbit-btn-portfolio__icon {
+    width: 13px;
+    height: 13px;
+  }
+
+  .orbit-explorer__nav {
+    align-self: auto;
+  }
+}
+
+/* ==========================================================================
+   TELAS MOBILES MUITO PEQUENAS (<= 360px)
+   Ajuste fino com bom gosto: só aperta o tamanho quando a tela é menor que o card
+   ========================================================================== */
+
+@media (max-width: 360px) {
+  .orbit-card-waypoint__content {
+    width: calc(100vw - 20px);
+    padding: 14px 16px;
+    border-radius: 10px;
+  }
+
+  .orbit-card-waypoint__step {
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    margin-bottom: 6px;
+  }
+
+  .orbit-card-waypoint__heading {
+    font-size: 1.12rem;
+    margin-bottom: 8px;
+  }
+
+  .orbit-card-waypoint__text {
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+
+  .orbit-back-btn,
+  .orbit-btn-portfolio {
+    padding: 8px 12px;
+    font-size: 0.68rem;
+    gap: 5px;
+    letter-spacing: 0.06em;
+  }
+
+  .orbit-back-btn__icon,
+  .orbit-btn-portfolio__icon {
+    width: 11px;
+    height: 11px;
+  }
+
+  .orbit-explorer__nav {
+    padding: 6px 12px;
+    gap: 10px;
+  }
+
+  .orbit-nav-btn {
+    width: 28px;
+    height: 28px;
+  }
+
+  .orbit-explorer__counter {
+    font-size: 0.75rem;
+    min-width: 44px;
+  }
+}

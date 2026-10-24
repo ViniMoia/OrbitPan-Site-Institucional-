@@ -1,0 +1,623 @@
+/* ==========================================================================
+   ORBITPAN — QUINTA DOBRA: FAQ & DIRETRIZES TÉCNICAS (ULTRA-OTIMIZADO)
+   Design System: Preto Profundo & Azul Aeroespacial (Zero Tons Roxos)
+   Performance: Expansão via CSS Grid (Zero Layout Thrashing), Compositor Only
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Contêiner Principal da Quinta Dobra & Rodapé
+   -------------------------------------------------------------------------- */
+.orbit-faq {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  background-color: var(--color-base, #06080c);
+  z-index: 5;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(0.98);
+  transition: 
+    opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 1.2s;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(56, 189, 248, 0.25) rgba(6, 8, 12, 0.8);
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Estado Ativo: Visibilidade Total e Escala Normal */
+.orbit-faq.is-active {
+  z-index: 25;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+/* Estado de Saída Suave */
+.orbit-faq.is-exiting {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(0.98);
+}
+
+/* Barra de rolagem discreta */
+.orbit-faq::-webkit-scrollbar {
+  width: 6px;
+}
+
+.orbit-faq::-webkit-scrollbar-track {
+  background: rgba(6, 8, 12, 0.8);
+}
+
+.orbit-faq::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.25);
+  border-radius: 999px;
+}
+
+.orbit-faq::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.55);
+}
+
+/* --------------------------------------------------------------------------
+   2. Cenografia de Fundo (Atmospheric Lighting)
+   -------------------------------------------------------------------------- */
+.orbit-faq__bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 15%, rgba(13, 27, 49, 0.45) 0%, rgba(6, 8, 12, 0.95) 55%, #06080c 100%);
+}
+
+.orbit-faq__bg .dots-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 1.5px 1.5px, rgba(255, 255, 255, 0.025) 1px, transparent 0);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 85%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 85%);
+}
+
+.orbit-faq__bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75vw;
+  height: 420px;
+  background: radial-gradient(ellipse at center top, rgba(56, 189, 248, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   3. Viewport Principal da Quinta Dobra (Antes do Footer)
+   -------------------------------------------------------------------------- */
+.orbit-faq__screen {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 10;
+  padding: 0 0 4rem 0;
+}
+
+/* Header Superior da Quinta Dobra (Botão Voltar & Logo) */
+.orbit-faq__header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.75rem 2.5rem;
+  z-index: 40;
+  background: linear-gradient(to bottom, rgba(6, 8, 12, 0.9) 0%, rgba(6, 8, 12, 0) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.orbit-faq__back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.65rem 1.25rem;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  color: #94a3b8;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.orbit-faq__back-btn svg {
+  width: 15px;
+  height: 15px;
+  transition: transform 0.3s ease;
+}
+
+.orbit-faq__back-btn:hover {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(59, 130, 246, 0.4);
+  color: #ffffff;
+  transform: translateX(-3px);
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.15);
+}
+
+.orbit-faq__back-btn:hover svg {
+  transform: translateX(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   4. Estrutura Central (Layout Editorial)
+   -------------------------------------------------------------------------- */
+.orbit-faq__container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 2rem 2rem 4rem 2rem;
+  width: 100%;
+}
+
+/* Cabeçalho Central da Dobra */
+.orbit-faq__headline-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 4.5rem;
+  position: relative;
+}
+
+.orbit-faq__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1.1rem;
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.22);
+  border-radius: 9999px;
+  color: #60a5fa;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.orbit-faq__tag::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #3b82f6;
+  box-shadow: 0 0 8px #3b82f6;
+}
+
+.orbit-faq__title {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 300;
+  color: #ffffff;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin: 0 0 1.25rem 0;
+}
+
+.orbit-faq__title-accent {
+  background: linear-gradient(135deg, #ffffff 30%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 500;
+}
+
+.orbit-faq__subtitle {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: clamp(0.95rem, 1.2vw, 1.125rem);
+  color: #94a3b8;
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 660px;
+  margin: 0;
+}
+
+/* Grade de Conteúdo: Accordion e Suporte Técnico */
+.orbit-faq__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3.5rem;
+  align-items: start;
+}
+
+/* --------------------------------------------------------------------------
+   5. Lista de Accordion (Expansão Líquida via CSS Grid)
+   -------------------------------------------------------------------------- */
+.orbit-faq__accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.faq-accordion-item {
+  position: relative;
+  background: rgba(10, 15, 26, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  transition: 
+    border-color 0.35s ease,
+    background-color 0.35s ease,
+    box-shadow 0.35s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+.faq-accordion-item:hover {
+  border-color: rgba(59, 130, 246, 0.35);
+  background-color: rgba(14, 21, 37, 0.88);
+}
+
+.faq-accordion-item.is-open {
+  border-color: rgba(59, 130, 246, 0.55);
+  background-color: rgba(15, 23, 42, 0.92);
+  box-shadow: 
+    0 15px 35px -5px rgba(59, 130, 246, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Trigger / Botão de Abertura */
+.faq-accordion-item__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.75rem 2rem;
+  text-align: left;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.faq-accordion-item__header-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-grow: 1;
+}
+
+.faq-accordion-item__index {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #3b82f6;
+  opacity: 0.85;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  flex-shrink: 0;
+}
+
+.faq-accordion-item.is-open .faq-accordion-item__index {
+  color: #60a5fa;
+  text-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+  opacity: 1;
+}
+
+.faq-accordion-item__question {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: clamp(1.05rem, 1.25vw, 1.25rem);
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 1.4;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+/* Ícone de Chevron em Círculo */
+.faq-accordion-item__icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.7);
+  transition: 
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.faq-accordion-item__icon-box svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq-accordion-item.is-open .faq-accordion-item__icon-box {
+  transform: rotate(180deg);
+  background: rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.5);
+  color: #60a5fa;
+}
+
+/* Corpo Expansível (CSS Grid - 0 Reflows) */
+.faq-accordion-item__body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq-accordion-item.is-open .faq-accordion-item__body {
+  grid-template-rows: 1fr;
+}
+
+.faq-accordion-item__content {
+  overflow: hidden;
+}
+
+.faq-accordion-item__inner {
+  padding: 0 2rem 2rem 4.5rem;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.975rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: #94a3b8;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 1.5rem;
+  margin-top: 0.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   6. Card de Suporte Técnico & Engenharia
+   -------------------------------------------------------------------------- */
+.orbit-faq-contact-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(9, 14, 24, 0.85) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  border-radius: 1.5rem;
+  padding: 2.25rem 2.5rem;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: 3.5rem;
+}
+
+.orbit-faq-contact-card__info {
+  max-width: 620px;
+}
+
+.orbit-faq-contact-card__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #38bdf8;
+  margin-bottom: 0.75rem;
+}
+
+.orbit-faq-contact-card__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+}
+
+.orbit-faq-contact-card__title {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.015em;
+}
+
+.orbit-faq-contact-card__desc {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 300;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.orbit-faq-contact-card__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1.75rem;
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.45);
+  border-radius: 9999px;
+  color: #ffffff;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.15);
+}
+
+.orbit-faq-contact-card__btn svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.orbit-faq-contact-card__btn:hover {
+  background: #3b82f6;
+  border-color: #60a5fa;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+.orbit-faq-contact-card__btn:hover svg {
+  transform: translateX(3px);
+}
+
+/* --------------------------------------------------------------------------
+   7. Ações de Rodapé do Viewport do FAQ (Navegação & Status)
+   -------------------------------------------------------------------------- */
+.orbit-faq__footer-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(6, 8, 12, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.orbit-faq__telemetry {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  color: #64748b;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.orbit-faq__telemetry-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.orbit-faq__telemetry-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #3b82f6;
+}
+
+.orbit-faq__actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.orbit-faq__scroll-hint,
+.orbit-faq__scroll-to-footer {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.6rem 1.25rem;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  color: #94a3b8;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.orbit-faq__scroll-hint svg,
+.orbit-faq__scroll-to-footer svg {
+  width: 14px;
+  height: 14px;
+}
+
+.orbit-faq__scroll-hint:hover,
+.orbit-faq__scroll-to-footer:hover {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(59, 130, 246, 0.4);
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   8. Responsividade Móvel
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .orbit-faq__header {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .orbit-faq__container {
+    padding: 1rem 1.25rem 3rem 1.25rem;
+  }
+
+  .orbit-faq__headline-wrap {
+    margin-bottom: 3rem;
+  }
+
+  .faq-accordion-item__trigger {
+    padding: 1.25rem 1.25rem;
+    gap: 1rem;
+  }
+
+  .faq-accordion-item__header-left {
+    gap: 1rem;
+  }
+
+  .faq-accordion-item__inner {
+    padding: 0 1.25rem 1.5rem 1.25rem;
+  }
+
+  .orbit-faq-contact-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.75rem;
+    gap: 1.5rem;
+  }
+
+  .orbit-faq-contact-card__btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .orbit-faq__footer-nav {
+    flex-direction: column-reverse;
+    gap: 1.25rem;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .orbit-faq__telemetry {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .orbit-faq__actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
