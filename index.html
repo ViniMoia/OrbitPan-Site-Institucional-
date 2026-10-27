@@ -26,6 +26,14 @@
   <!-- Carrossel Infinito de Projetos & Trajetória (Logos) -->
   <link rel="stylesheet" href="./assets/css/portfolio-marquee.css">
 
+  <!-- [EXPERIMENTO REVERSÍVEL: DOBRA DE MANIFESTO & PROPÓSITO] -->
+  <link rel="stylesheet" href="./assets/css/statement.css?v=1">
+  <!-- [/EXPERIMENTO REVERSÍVEL: DOBRA DE MANIFESTO & PROPÓSITO] -->
+
+  <!-- [EXPERIMENTO REVERSÍVEL: NAVEGAÇÃO NO HEADER (A PARTIR DA 3ª DOBRA)] -->
+  <link rel="stylesheet" href="./assets/css/header-nav.css?v=1">
+  <!-- [/EXPERIMENTO REVERSÍVEL: NAVEGAÇÃO NO HEADER] -->
+
   <!-- Estilos da Quarta Dobra: Depoimentos & Carrossel Infinito -->
   <link rel="stylesheet" href="./assets/css/testimonials.css">
 
@@ -276,6 +284,15 @@
         <span>Visão da Empresa</span>
       </button>
 
+      <!-- [EXPERIMENTO REVERSÍVEL: NAVEGAÇÃO NO HEADER] -->
+      <nav class="orbit-header-nav" aria-label="Navegação Superior">
+        <button type="button" class="orbit-header-nav__item is-active" data-nav-scene="portfolio">Portfólio</button>
+        <button type="button" class="orbit-header-nav__item" data-nav-scene="manifesto">Propósito</button>
+        <button type="button" class="orbit-header-nav__item" data-nav-scene="depoimentos">Depoimentos</button>
+        <button type="button" class="orbit-header-nav__item" data-nav-scene="faq">Contato</button>
+      </nav>
+      <!-- [/EXPERIMENTO REVERSÍVEL: NAVEGAÇÃO NO HEADER] -->
+
       <a href="./" class="orbit-brand" id="portfolio-brand-logo" aria-label="Orbitpan — Página Inicial">
         <div class="orbit-brand__symbol" aria-hidden="true">
           <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -478,12 +495,12 @@
 
       </div>
 
-      <!-- Rodapé da Seção com Navegação para a Quarta Dobra -->
+      <!-- Rodapé da Seção com Navegação para a Próxima Dobra (Manifesto & Propósito) -->
       <footer class="portfolio-timeline__footer">
-        <span class="portfolio-timeline__footer-cue">Avançar para a Próxima Dobra</span>
+        <span class="portfolio-timeline__footer-cue">Avançar: Nossa Essência</span>
         <button type="button" class="orbit-btn-testimonials" id="portfolio-testimonials-btn"
-          aria-label="Avançar para Depoimentos">
-          <span>Ver Depoimentos &amp; Chancela</span>
+          aria-label="Avançar para Propósito &amp; Manifesto">
+          <span>Conhecer Nosso Propósito</span>
           <span class="orbit-btn-testimonials__icon" aria-hidden="true">
             <svg viewBox="0 0 16 16" fill="none">
               <path d="M2 8H13.5M9 3.5L13.5 8L9 12.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -724,6 +741,98 @@
   </section>
 
   <!-- ==========================================================================
+       [EXPERIMENTO REVERSÍVEL: DOBRA DE MANIFESTO & PROPÓSITO (APÓS A 3ª DOBRA)]
+       Para desativar este experimento, basta comentar ou remover esta seção.
+       O sistema detecta automaticamente a ausência e reconecta a 3ª à 4ª dobra.
+       ========================================================================== -->
+  <section class="orbit-statement" id="manifesto" aria-label="Manifesto e Propósito Orbitpan">
+    <!-- Cenografia Atmosférica de Fundo Escuro -->
+    <div class="orbit-statement__backdrop" aria-hidden="true">
+      <div class="orbit-statement__glow-center"></div>
+      <div class="orbit-statement__vignette"></div>
+      <div class="orbit-statement__grid"></div>
+    </div>
+
+    <!-- Header Superior com Retorno ao Portfólio e Marca -->
+    <header class="orbit-statement__header">
+      <button type="button" class="orbit-statement__back-btn" id="statement-back-btn"
+        aria-label="Voltar para a Galeria de Portfólio 3D">
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        <span>Portfólio 3D</span>
+      </button>
+
+      <!-- [EXPERIMENTO REVERSÍVEL: NAVEGAÇÃO NO HEADER] -->
+      <nav class="orbit-header-nav" aria-label="Navegação Superior">
+        <button type="button" class="orbit-header-nav__item" data-nav-scene="portfolio">Portfólio</button>
+        <button type="button" class="orbit-header-nav__item is-active" data-nav-scene="manifesto">Propósito</button>
+        <button type="button" class="orbit-header-nav__item" data-nav-scene="depoimentos">Depoimentos</button>
+        <button type="button" class="orbit-header-nav__item" data-nav-scene="faq">Contato</button>
+      </nav>
+      <!-- [/EXPERIMENTO REVERSÍVEL: NAVEGAÇÃO NO HEADER] -->
+
+      <a href="./" class="orbit-brand" id="statement-brand-logo" aria-label="Orbitpan — Página Inicial">
+        <div class="orbit-brand__symbol" aria-hidden="true">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="18" cy="18" rx="15" ry="6" transform="rotate(-25 18 18)" stroke="currentColor"
+              stroke-width="1.6" stroke-dasharray="3 1.5" />
+            <polygon points="18,6 26,24 18,20 10,24" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"
+              fill="none" />
+            <circle cx="18" cy="18" r="2.2" fill="var(--color-accent-blue)" />
+          </svg>
+        </div>
+        <div class="orbit-brand__meta">
+          <span class="orbit-brand__title">Orbitpan</span>
+          <span class="orbit-brand__subtitle">Aviation Virtual Spaces</span>
+        </div>
+      </a>
+    </header>
+
+    <!-- Conteúdo Central: O Manifesto Editorial -->
+    <div class="orbit-statement__content">
+      <!-- Símbolo Circular Superior (Retículo Minimalista Inspirado na Referência) -->
+      <div class="orbit-statement__reticle" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="21" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.32" stroke-dasharray="4 2.5" />
+          <circle cx="24" cy="24" r="15" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.18" />
+          <circle cx="24" cy="24" r="3.2" fill="var(--color-accent-blue, #38bdf8)" class="orbit-statement__reticle-core" />
+        </svg>
+      </div>
+
+      <!-- Eyebrow Kicker Editorial -->
+      <div class="orbit-statement__kicker">
+        <span class="orbit-statement__kicker-dash" aria-hidden="true">—</span>
+        <span class="orbit-statement__kicker-text">PROPÓSITO</span>
+      </div>
+
+      <!-- Headline com a Frase Oficial Solicitada -->
+      <h2 class="orbit-statement__headline">
+        <span class="orbit-statement__line--lead">Transformamos espaços em</span>
+        <span class="orbit-statement__line--accent">
+          <em class="orbit-statement__italic">experiências que, convertem e geram resultados.</em>
+        </span>
+      </h2>
+    </div>
+
+    <!-- Rodapé da Seção com Avanço para Depoimentos -->
+    <footer class="orbit-statement__footer">
+      <button type="button" class="orbit-statement__next-btn" id="statement-next-btn"
+        aria-label="Avançar para Depoimentos e Avaliações">
+        <span>Ver Depoimentos &amp; Chancela</span>
+        <span class="orbit-statement__next-icon" aria-hidden="true">
+          <svg viewBox="0 0 16 16" fill="none">
+            <path d="M8 2.5V13.5M3.5 9L8 13.5L12.5 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </span>
+      </button>
+    </footer>
+  </section>
+  <!-- [/EXPERIMENTO REVERSÍVEL: DOBRA DE MANIFESTO & PROPÓSITO] -->
+
+  <!-- ==========================================================================
        QUARTA DOBRA: DEPOIMENTOS & CHANCELA AERONÁUTICA (CARROSSEL INFINITO)
        ========================================================================== -->
   <section class="orbit-testimonials" id="depoimentos" aria-label="Depoimentos e Avaliações de Clientes Orbitpan">
@@ -738,13 +847,22 @@
     <!-- Header Superior da Seção -->
     <header class="orbit-testimonials__header">
       <button type="button" class="orbit-testimonials__back-btn" id="testimonials-back-btn"
-        aria-label="Voltar para a Galeria de Portfólio 3D">
+        aria-label="Voltar para a Dobra Anterior">
         <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
           <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round" />
         </svg>
-        <span>Portfólio 3D</span>
+        <span id="testimonials-back-btn-text">Propósito</span>
       </button>
+
+      <!-- [EXPERIMENTO REVERSÍVEL: NAVEGAÇÃO NO HEADER] -->
+      <nav class="orbit-header-nav" aria-label="Navegação Superior">
+        <button type="button" class="orbit-header-nav__item" data-nav-scene="portfolio">Portfólio</button>
+        <button type="button" class="orbit-header-nav__item" data-nav-scene="manifesto">Propósito</button>
+        <button type="button" class="orbit-header-nav__item is-active" data-nav-scene="depoimentos">Depoimentos</button>
+        <button type="button" class="orbit-header-nav__item" data-nav-scene="faq">Contato</button>
+      </nav>
+      <!-- [/EXPERIMENTO REVERSÍVEL: NAVEGAÇÃO NO HEADER] -->
 
       <a href="./" class="orbit-brand" id="testimonials-brand-logo" aria-label="Orbitpan — Página Inicial">
         <div class="orbit-brand__symbol" aria-hidden="true">
@@ -1192,6 +1310,15 @@
           <span>Depoimentos</span>
         </button>
 
+        <!-- [EXPERIMENTO REVERSÍVEL: NAVEGAÇÃO NO HEADER] -->
+        <nav class="orbit-header-nav" aria-label="Navegação Superior">
+          <button type="button" class="orbit-header-nav__item" data-nav-scene="portfolio">Portfólio</button>
+          <button type="button" class="orbit-header-nav__item" data-nav-scene="manifesto">Propósito</button>
+          <button type="button" class="orbit-header-nav__item" data-nav-scene="depoimentos">Depoimentos</button>
+          <button type="button" class="orbit-header-nav__item is-active" data-nav-scene="faq">Contato</button>
+        </nav>
+        <!-- [/EXPERIMENTO REVERSÍVEL: NAVEGAÇÃO NO HEADER] -->
+
         <a href="./" class="orbit-brand" id="faq-brand-logo" aria-label="Orbitpan — Página Inicial">
           <div class="orbit-brand__symbol" aria-hidden="true">
             <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1471,17 +1598,11 @@
     <footer class="orbit-site-footer" id="orbit-site-footer" aria-label="Rodapé Institucional Orbitpan">
       <div class="orbit-site-footer__inner">
 
-        <!-- Linha Superior (Tagline Editorial & Botão Minimalista) -->
+        <!-- Linha Superior (Tagline Editorial) -->
         <div class="orbit-footer-top">
           <p class="orbit-footer-tagline">
             DIGITALIZAÇÃO VOLUMÉTRICA · TOURS 360° · AVIAÇÃO EXECUTIVA · HANGAR &amp; FBO
           </p>
-
-          <a href="https://wa.me/5548999990000?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20a%20equipe%20Orbitpan"
-            target="_blank" rel="noopener noreferrer" class="orbit-footer-cta-minimal" id="footer-cta-minimal">
-            <span>FALAR COM A ORBITPAN</span>
-            <span class="orbit-footer-cta-line" aria-hidden="true"></span>
-          </a>
         </div>
 
         <!-- Grade Central: 4 Colunas com Divisores Elegantes e Numerações -->
@@ -1550,9 +1671,9 @@
                 <span>DISPONÍVEL PARA PROJETOS</span>
               </div>
 
-              <!-- Botão Circular Minimalista de Retorno ao Topo -->
+              <!-- Botão Circular Minimalista de Retorno à Hero (Início) -->
               <button type="button" class="orbit-footer-circle-btn" id="footer-back-to-top"
-                aria-label="Voltar ao Topo do FAQ">
+                aria-label="Voltar ao Início (Hangar 360°)" title="Voltar ao Início">
                 <span class="orbit-footer-circle-dot" aria-hidden="true"></span>
                 <svg viewBox="0 0 16 16" fill="none" class="orbit-footer-circle-arrow" aria-hidden="true">
                   <path d="M8 12V4M8 4L4 8M8 4L12 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"

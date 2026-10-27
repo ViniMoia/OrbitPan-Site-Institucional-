@@ -35,6 +35,12 @@
       this.portfolioBackButton = document.getElementById('portfolio-back-btn');
       this.portfolioLogo = document.getElementById('portfolio-brand-logo');
 
+      // [EXPERIMENTO REVERSÍVEL: DOBRA DE MANIFESTO & PROPÓSITO]
+      this.manifestoSection = document.getElementById('manifesto');
+      this.statementBackButton = document.getElementById('statement-back-btn');
+      this.statementLogo = document.getElementById('statement-brand-logo');
+      this.statementNextButton = document.getElementById('statement-next-btn');
+
       this.testimonialsButton = document.getElementById('portfolio-testimonials-btn');
       this.testimonialsBackButton = document.getElementById('testimonials-back-btn');
       this.testimonialsLogo = document.getElementById('testimonials-brand-logo');
@@ -55,6 +61,8 @@
     init() {
       this.blockVerticalScroll();
       this.bindTriggers();
+      this.updateHeaderNav(this.currentScene);
+      this.checkInitialHash();
     }
 
     /**
@@ -124,7 +132,11 @@
               const isAtBottom = (portfolioSection.scrollTop + portfolioSection.clientHeight >= portfolioSection.scrollHeight - 25);
               if (isAtBottom && (now - this.lastTransitionTime >= 1650)) {
                 e.preventDefault();
-                this.transitionPortfolioToTestimonials();
+                if (this.manifestoSection || document.getElementById('manifesto')) {
+                  this.transitionPortfolioToStatement();
+                } else {
+                  this.transitionPortfolioToTestimonials();
+                }
                 return;
               }
             }
@@ -190,12 +202,26 @@
 
         // Dobra 3 já possui tratamento nativo com fronteiras acima.
 
-        // Dobra 4: Depoimentos <-> Dobra 3 (Portfólio) ou Dobra 5 (FAQ)
+        // Cenário 3: Na Dobra de Manifesto & Propósito (Experimento)
+        if (this.currentScene === 'statement') {
+          if (delta > threshold) {
+            this.transitionStatementToTestimonials();
+          } else if (delta < -threshold) {
+            this.transitionStatementToPortfolio();
+          }
+          return;
+        }
+
+        // Dobra 4: Depoimentos <-> Dobra 3 (Portfólio/Manifesto) ou Dobra 5 (FAQ)
         if (this.currentScene === 'testimonials') {
           if (delta > threshold) {
             this.transitionTestimonialsToFaq();
           } else if (delta < -threshold) {
-            this.transitionTestimonialsToPortfolio();
+            if (this.manifestoSection || document.getElementById('manifesto')) {
+              this.transitionTestimonialsToStatement();
+            } else {
+              this.transitionTestimonialsToPortfolio();
+            }
           }
           return;
         }
@@ -240,7 +266,13 @@
                 this.transitionToPortfolio();
               }
             } else if (this.currentScene === 'portfolio') {
-              this.transitionPortfolioToTestimonials();
+              if (this.manifestoSection || document.getElementById('manifesto')) {
+                this.transitionPortfolioToStatement();
+              } else {
+                this.transitionPortfolioToTestimonials();
+              }
+            } else if (this.currentScene === 'statement') {
+              this.transitionStatementToTestimonials();
             } else if (this.currentScene === 'testimonials') {
               this.transitionTestimonialsToFaq();
             }
@@ -255,7 +287,13 @@
                 this.transitionFaqToTestimonials();
               }
             } else if (this.currentScene === 'testimonials') {
-              this.transitionTestimonialsToPortfolio();
+              if (this.manifestoSection || document.getElementById('manifesto')) {
+                this.transitionTestimonialsToStatement();
+              } else {
+                this.transitionTestimonialsToPortfolio();
+              }
+            } else if (this.currentScene === 'statement') {
+              this.transitionStatementToPortfolio();
             } else if (this.currentScene === 'portfolio') {
               this.transitionPortfolioToExplorer();
             } else if (this.currentScene === 'explorer') {
@@ -298,7 +336,13 @@
               this.transitionToPortfolio();
             }
           } else if (this.currentScene === 'portfolio') {
-            this.transitionPortfolioToTestimonials();
+            if (this.manifestoSection || document.getElementById('manifesto')) {
+              this.transitionPortfolioToStatement();
+            } else {
+              this.transitionPortfolioToTestimonials();
+            }
+          } else if (this.currentScene === 'statement') {
+            this.transitionStatementToTestimonials();
           } else if (this.currentScene === 'testimonials') {
             this.transitionTestimonialsToFaq();
           }
@@ -312,7 +356,13 @@
               this.transitionFaqToTestimonials();
             }
           } else if (this.currentScene === 'testimonials') {
-            this.transitionTestimonialsToPortfolio();
+            if (this.manifestoSection || document.getElementById('manifesto')) {
+              this.transitionTestimonialsToStatement();
+            } else {
+              this.transitionTestimonialsToPortfolio();
+            }
+          } else if (this.currentScene === 'statement') {
+            this.transitionStatementToPortfolio();
           } else if (this.currentScene === 'portfolio') {
             this.transitionPortfolioToExplorer();
           } else if (this.currentScene === 'explorer') {
@@ -383,21 +433,54 @@
         });
       }
 
-      // 5. Terceira Dobra -> Quarta Dobra ("Depoimentos")
+      // 5. Terceira Dobra -> Quarta Dobra / Manifesto
       if (this.testimonialsButton) {
         this.testimonialsButton.addEventListener('click', (e) => {
           e.preventDefault();
           e.stopPropagation();
-          this.transitionPortfolioToTestimonials();
+          if (this.manifestoSection || document.getElementById('manifesto')) {
+            this.transitionPortfolioToStatement();
+          } else {
+            this.transitionPortfolioToTestimonials();
+          }
         });
       }
 
-      // 6. Quarta Dobra -> Terceira Dobra ("Portfólio 3D")
+      // [EXPERIMENTO REVERSÍVEL: GATILHOS DA DOBRA DE MANIFESTO & PROPÓSITO]
+      if (this.statementBackButton) {
+        this.statementBackButton.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          this.transitionStatementToPortfolio();
+        });
+      }
+
+      if (this.statementLogo) {
+        this.statementLogo.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          this.transitionStatementToHero();
+        });
+      }
+
+      if (this.statementNextButton) {
+        this.statementNextButton.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          this.transitionStatementToTestimonials();
+        });
+      }
+
+      // 6. Quarta Dobra -> Terceira Dobra / Manifesto
       if (this.testimonialsBackButton) {
         this.testimonialsBackButton.addEventListener('click', (e) => {
           e.preventDefault();
           e.stopPropagation();
-          this.transitionTestimonialsToPortfolio();
+          if (this.manifestoSection || document.getElementById('manifesto')) {
+            this.transitionTestimonialsToStatement();
+          } else {
+            this.transitionTestimonialsToPortfolio();
+          }
         });
       }
 
@@ -444,6 +527,71 @@
           this.transitionFaqToHero();
         });
       }
+
+      // 11. [EXPERIMENTO REVERSÍVEL: NAVEGAÇÃO SUPERIOR NO HEADER]
+      const navButtons = document.querySelectorAll('.orbit-header-nav__item[data-nav-scene]');
+      navButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const target = btn.getAttribute('data-nav-scene');
+          if (target && typeof this.transitionTo === 'function') {
+            this.transitionTo(target);
+          }
+        });
+      });
+    }
+
+    /**
+     * Sincroniza dinamicamente o estado ativo (.is-active) dos itens de navegação do header em todas as dobras
+     */
+    updateHeaderNav(targetScene) {
+      let activeScene = targetScene;
+      if (activeScene === 'statement' || activeScene === 'proposito') activeScene = 'manifesto';
+      else if (activeScene === 'testimonials') activeScene = 'depoimentos';
+      else if (activeScene === 'contato') activeScene = 'faq';
+      else if (activeScene === 'trabalhos' || activeScene === 'projetos') activeScene = 'portfolio';
+      else if (activeScene === 'explorer') activeScene = 'empresa';
+
+      const navItems = document.querySelectorAll('.orbit-header-nav__item[data-nav-scene]');
+      navItems.forEach(item => {
+        const itemScene = item.getAttribute('data-nav-scene');
+        if (itemScene === activeScene) {
+          item.classList.add('is-active');
+        } else {
+          item.classList.remove('is-active');
+        }
+      });
+    }
+
+    /**
+     * Sincroniza a cena ativa inicial e subsequente com o hash da URL (#portfolio, #manifesto, #depoimentos, #faq)
+     */
+    checkInitialHash() {
+      const handleHash = () => {
+        let hash = (window.location.hash || '').replace('#', '').trim().toLowerCase();
+        if (!hash) return;
+        if (hash === 'proposito' || hash === 'manifesto') hash = 'statement';
+        else if (hash === 'depoimentos') hash = 'testimonials';
+        else if (hash === 'contato') hash = 'faq';
+        else if (hash === 'trabalhos' || hash === 'projetos') hash = 'portfolio';
+        else if (hash === 'empresa') hash = 'explorer';
+
+        if (['hero', 'explorer', 'portfolio', 'statement', 'testimonials', 'faq'].includes(hash)) {
+          setTimeout(() => {
+            if (this.currentScene !== hash && typeof this.transitionTo === 'function') {
+              this.transitionTo(hash);
+            }
+          }, 350);
+        }
+      };
+
+      if (document.readyState === 'complete') {
+        handleHash();
+      } else {
+        window.addEventListener('load', handleHash, { once: true });
+      }
+      window.addEventListener('hashchange', handleHash);
     }
 
     /**
@@ -574,6 +722,7 @@
         }
 
         requestAnimationFrame(() => {
+          this.updateHeaderNav('portfolio');
           this.portfolioSection.classList.remove('is-exiting');
           this.portfolioSection.classList.add('is-active', 'is-in-view');
         });
@@ -623,6 +772,7 @@
         }
 
         requestAnimationFrame(() => {
+          this.updateHeaderNav('explorer');
           this.explorerSection.classList.remove('is-exiting');
           this.explorerSection.classList.add('is-active', 'is-in-view');
         });
@@ -672,6 +822,7 @@
         }
 
         requestAnimationFrame(() => {
+          this.updateHeaderNav('testimonials');
           this.testimonialsSection.classList.remove('is-exiting');
           this.testimonialsSection.classList.add('is-active', 'is-in-view');
         });
@@ -690,6 +841,246 @@
             global.portfolioGallery.isActive = false;
             global.portfolioGallery.stopLoop();
           }
+        }
+      }, 1550);
+    }
+
+    /**
+     * [EXPERIMENTO REVERSÍVEL]
+     * Transição Terceira Dobra -> Dobra de Manifesto (Blur Out do Portfólio, Blur In do Manifesto)
+     */
+    transitionPortfolioToStatement() {
+      if (this.isTransitioning || this.currentScene === 'statement') return;
+      this.manifestoSection = this.manifestoSection || document.getElementById('manifesto');
+      if (!this.manifestoSection) {
+        this.transitionPortfolioToTestimonials();
+        return;
+      }
+
+      this.isTransitioning = true;
+      this.lastTransitionTime = performance.now();
+      document.body.classList.add('is-transitioning');
+
+      // 1. Portfólio inicia saída em Blur
+      if (this.portfolioSection) {
+        this.portfolioSection.classList.remove('is-active');
+        this.portfolioSection.classList.add('is-exiting');
+      }
+
+      // 2. Dobra de Manifesto prepara para emergir do Blur
+      this.manifestoSection.style.visibility = 'visible';
+      this.manifestoSection.style.zIndex = '30';
+
+      requestAnimationFrame(() => {
+        this.updateHeaderNav('statement');
+        this.manifestoSection.classList.remove('is-exiting');
+        this.manifestoSection.classList.add('is-active', 'is-in-view');
+      });
+
+      // 3. Conclusão da Transição
+      setTimeout(() => {
+        this.currentScene = 'statement';
+        this.isTransitioning = false;
+        document.body.classList.remove('is-transitioning');
+
+        // Desativa renderização da Galeria 3D para economizar GPU
+        if (this.portfolioSection) {
+          this.portfolioSection.style.visibility = 'hidden';
+          if (global.portfolioGallery) {
+            global.portfolioGallery.isActive = false;
+            global.portfolioGallery.stopLoop();
+          }
+        }
+      }, 1550);
+    }
+
+    /**
+     * [EXPERIMENTO REVERSÍVEL]
+     * Transição Dobra de Manifesto -> Terceira Dobra (Retorno do Manifesto para o Portfólio)
+     */
+    transitionStatementToPortfolio() {
+      if (this.isTransitioning || this.currentScene === 'portfolio') return;
+      this.isTransitioning = true;
+      this.lastTransitionTime = performance.now();
+      document.body.classList.add('is-transitioning');
+
+      // 1. Manifesto inicia saída em Blur
+      this.manifestoSection = this.manifestoSection || document.getElementById('manifesto');
+      if (this.manifestoSection) {
+        this.manifestoSection.classList.remove('is-active');
+        this.manifestoSection.classList.add('is-exiting');
+      }
+
+      // 2. Terceira Dobra (Portfólio) reaparece do Blur
+      if (this.portfolioSection) {
+        this.portfolioSection.style.visibility = 'visible';
+        this.portfolioSection.style.zIndex = '25';
+
+        if (global.portfolioGallery) {
+          global.portfolioGallery.isActive = true;
+          global.portfolioGallery.startLoop();
+          global.portfolioGallery.handleResize();
+        }
+
+        requestAnimationFrame(() => {
+          this.updateHeaderNav('portfolio');
+          this.portfolioSection.classList.remove('is-exiting');
+          this.portfolioSection.classList.add('is-active', 'is-in-view');
+        });
+      }
+
+      // 3. Conclusão do Retorno
+      setTimeout(() => {
+        this.currentScene = 'portfolio';
+        this.isTransitioning = false;
+        document.body.classList.remove('is-transitioning');
+
+        if (this.manifestoSection) {
+          this.manifestoSection.style.visibility = 'hidden';
+          this.manifestoSection.style.zIndex = '5';
+          this.manifestoSection.classList.remove('is-exiting', 'is-in-view');
+        }
+      }, 1550);
+    }
+
+    /**
+     * [EXPERIMENTO REVERSÍVEL]
+     * Transição Dobra de Manifesto -> Quarta Dobra (Avanço do Manifesto para Depoimentos)
+     */
+    transitionStatementToTestimonials() {
+      if (this.isTransitioning || this.currentScene === 'testimonials') return;
+      this.isTransitioning = true;
+      this.lastTransitionTime = performance.now();
+      document.body.classList.add('is-transitioning');
+
+      // 1. Manifesto inicia saída em Blur
+      this.manifestoSection = this.manifestoSection || document.getElementById('manifesto');
+      if (this.manifestoSection) {
+        this.manifestoSection.classList.remove('is-active');
+        this.manifestoSection.classList.add('is-exiting');
+      }
+
+      // 2. Quarta Dobra (Depoimentos) prepara para emergir do Blur
+      if (this.testimonialsSection) {
+        this.testimonialsSection.style.visibility = 'visible';
+        this.testimonialsSection.style.zIndex = '30';
+
+        if (global.orbitTestimonials && typeof global.orbitTestimonials.onEnter === 'function') {
+          global.orbitTestimonials.onEnter();
+        }
+
+        requestAnimationFrame(() => {
+          this.updateHeaderNav('testimonials');
+          this.testimonialsSection.classList.remove('is-exiting');
+          this.testimonialsSection.classList.add('is-active', 'is-in-view');
+        });
+      }
+
+      // 3. Conclusão da Transição
+      setTimeout(() => {
+        this.currentScene = 'testimonials';
+        this.isTransitioning = false;
+        document.body.classList.remove('is-transitioning');
+
+        if (this.manifestoSection) {
+          this.manifestoSection.style.visibility = 'hidden';
+          this.manifestoSection.style.zIndex = '5';
+          this.manifestoSection.classList.remove('is-exiting', 'is-in-view');
+        }
+      }, 1550);
+    }
+
+    /**
+     * [EXPERIMENTO REVERSÍVEL]
+     * Transição Quarta Dobra -> Dobra de Manifesto (Retorno de Depoimentos para o Manifesto)
+     */
+    transitionTestimonialsToStatement() {
+      if (this.isTransitioning || this.currentScene === 'statement') return;
+      this.manifestoSection = this.manifestoSection || document.getElementById('manifesto');
+      if (!this.manifestoSection) {
+        this.transitionTestimonialsToPortfolio();
+        return;
+      }
+
+      this.isTransitioning = true;
+      this.lastTransitionTime = performance.now();
+      document.body.classList.add('is-transitioning');
+
+      // 1. Quarta Dobra inicia saída em Blur
+      if (this.testimonialsSection) {
+        this.testimonialsSection.classList.remove('is-active');
+        this.testimonialsSection.classList.add('is-exiting');
+        if (global.orbitTestimonials && typeof global.orbitTestimonials.onLeave === 'function') {
+          global.orbitTestimonials.onLeave();
+        }
+      }
+
+      // 2. Manifesto reaparece do Blur
+      this.manifestoSection.style.visibility = 'visible';
+      this.manifestoSection.style.zIndex = '30';
+
+      requestAnimationFrame(() => {
+        this.updateHeaderNav('statement');
+        this.manifestoSection.classList.remove('is-exiting');
+        this.manifestoSection.classList.add('is-active', 'is-in-view');
+      });
+
+      // 3. Conclusão do Retorno
+      setTimeout(() => {
+        this.currentScene = 'statement';
+        this.isTransitioning = false;
+        document.body.classList.remove('is-transitioning');
+
+        if (this.testimonialsSection) {
+          this.testimonialsSection.style.visibility = 'hidden';
+          this.testimonialsSection.style.zIndex = '5';
+          this.testimonialsSection.classList.remove('is-exiting', 'is-in-view');
+        }
+      }, 1550);
+    }
+
+    /**
+     * [EXPERIMENTO REVERSÍVEL]
+     * Transição Dobra de Manifesto -> Hero (Retorno direto ao Hangar pelo Logotipo)
+     */
+    transitionStatementToHero() {
+      if (this.isTransitioning || this.currentScene === 'hero') return;
+      this.isTransitioning = true;
+      this.lastTransitionTime = performance.now();
+      document.body.classList.add('is-transitioning');
+
+      this.manifestoSection = this.manifestoSection || document.getElementById('manifesto');
+      if (this.manifestoSection) {
+        this.manifestoSection.classList.remove('is-active');
+        this.manifestoSection.classList.add('is-exiting');
+      }
+
+      this.heroSection.style.visibility = 'visible';
+      this.heroSection.style.zIndex = '20';
+
+      if (window.heroPanoramaController) {
+        window.heroPanoramaController.isIntersecting = true;
+        window.heroPanoramaController.startLoop();
+        window.heroPanoramaController.handleResize();
+      }
+
+      requestAnimationFrame(() => {
+        this.updateHeaderNav('hero');
+        this.heroSection.classList.remove('is-exiting');
+        if (window.heroPanoramaController) {
+          window.heroPanoramaController.setZoom(66);
+        }
+      });
+
+      setTimeout(() => {
+        this.currentScene = 'hero';
+        this.isTransitioning = false;
+        document.body.classList.remove('is-transitioning');
+
+        if (this.manifestoSection) {
+          this.manifestoSection.style.visibility = 'hidden';
+          this.manifestoSection.style.zIndex = '5';
+          this.manifestoSection.classList.remove('is-exiting', 'is-in-view');
         }
       }, 1550);
     }
@@ -724,6 +1115,7 @@
         }
 
         requestAnimationFrame(() => {
+          this.updateHeaderNav('portfolio');
           this.portfolioSection.classList.remove('is-exiting');
           this.portfolioSection.classList.add('is-active', 'is-in-view');
         });
@@ -770,6 +1162,7 @@
       }
 
       requestAnimationFrame(() => {
+        this.updateHeaderNav('hero');
         this.heroSection.classList.remove('is-exiting');
         if (window.heroPanoramaController) {
           window.heroPanoramaController.setZoom(66);
@@ -818,6 +1211,7 @@
         }
 
         requestAnimationFrame(() => {
+          this.updateHeaderNav('faq');
           this.faqSection.classList.remove('is-exiting');
           this.faqSection.classList.add('is-active', 'is-in-view');
         });
@@ -865,6 +1259,7 @@
         }
 
         requestAnimationFrame(() => {
+          this.updateHeaderNav('testimonials');
           this.testimonialsSection.classList.remove('is-exiting');
           this.testimonialsSection.classList.add('is-active', 'is-in-view');
         });
@@ -908,6 +1303,7 @@
       }
 
       requestAnimationFrame(() => {
+        this.updateHeaderNav('hero');
         this.heroSection.classList.remove('is-exiting');
         if (window.heroPanoramaController) {
           window.heroPanoramaController.setZoom(66);
@@ -935,7 +1331,10 @@
       if (this.isTransitioning) return;
       let target = targetScene;
       if (target === 'empresa') target = 'explorer';
+      if (target === 'manifesto' || target === 'proposito') target = 'statement';
       if (target === 'depoimentos') target = 'testimonials';
+      if (target === 'contato') target = 'faq';
+      if (target === 'trabalhos' || target === 'projetos') target = 'portfolio';
 
       if (this.currentScene === target) {
         if (target === 'faq' && this.faqSection) {
@@ -966,6 +1365,7 @@
         hero: { el: this.heroSection, z: 20 },
         explorer: { el: this.explorerSection, z: 20 },
         portfolio: { el: this.portfolioSection, z: 25 },
+        statement: { el: this.manifestoSection || document.getElementById('manifesto'), z: 30 },
         testimonials: { el: this.testimonialsSection, z: 30 },
         faq: { el: this.faqSection, z: 35 }
       };
@@ -1022,6 +1422,7 @@
       }
 
       requestAnimationFrame(() => {
+        this.updateHeaderNav(target);
         next.el.classList.remove('is-exiting');
         next.el.classList.add('is-active', 'is-in-view');
         if (target === 'hero' && window.heroPanoramaController) {
@@ -1035,6 +1436,18 @@
         this.currentScene = target;
         this.isTransitioning = false;
         document.body.classList.remove('is-transitioning');
+
+        if (window.history && window.history.replaceState) {
+          let hashName = target;
+          if (target === 'statement') hashName = 'manifesto';
+          else if (target === 'testimonials') hashName = 'depoimentos';
+          else if (target === 'faq') hashName = 'faq';
+          else if (target === 'portfolio') hashName = 'portfolio';
+          else if (target === 'explorer') hashName = 'empresa';
+          else if (target === 'hero') hashName = '';
+          const newUrl = hashName ? '#' + hashName : window.location.pathname;
+          window.history.replaceState(null, '', newUrl);
+        }
 
         if (current && current.el) {
           current.el.style.visibility = 'hidden';

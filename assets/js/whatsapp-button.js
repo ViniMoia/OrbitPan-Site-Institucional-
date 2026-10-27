@@ -65,6 +65,7 @@
     const hero = document.getElementById('orbit-hero');
     const explorer = document.getElementById('empresa');
     const portfolio = document.getElementById('portfolio');
+    const manifesto = document.getElementById('manifesto');
     const testimonials = document.getElementById('depoimentos');
     const faq = document.getElementById('faq');
 
@@ -82,6 +83,7 @@
     const isOtherActive = (
       (explorer && (explorer.classList.contains('is-active') || explorer.classList.contains('is-in-view')) && !explorer.classList.contains('is-exiting')) ||
       (portfolio && (portfolio.classList.contains('is-active') || portfolio.classList.contains('is-in-view')) && !portfolio.classList.contains('is-exiting')) ||
+      (manifesto && (manifesto.classList.contains('is-active') || manifesto.classList.contains('is-in-view')) && !manifesto.classList.contains('is-exiting')) ||
       (testimonials && (testimonials.classList.contains('is-active') || testimonials.classList.contains('is-in-view')) && !testimonials.classList.contains('is-exiting')) ||
       (faq && (faq.classList.contains('is-active') || faq.classList.contains('is-in-view')) && !faq.classList.contains('is-exiting'))
     );
@@ -114,6 +116,10 @@
       'transitionToPortfolio',
       'transitionPortfolioToExplorer',
       'transitionPortfolioToTestimonials',
+      'transitionPortfolioToStatement',
+      'transitionStatementToPortfolio',
+      'transitionStatementToTestimonials',
+      'transitionTestimonialsToStatement',
       'transitionTestimonialsToPortfolio',
       'transitionTestimonialsToFaq',
       'transitionFaqToTestimonials'

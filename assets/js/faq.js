@@ -106,19 +106,22 @@
     bindFooterActions() {
       this.initLiveClock();
 
-      const scrollToTop = (e) => {
+      const returnToHero = (e) => {
         if (e && typeof e.preventDefault === 'function') e.preventDefault();
         if (this.section) {
-          this.section.scrollTo({ top: 0, behavior: 'smooth' });
+          this.section.scrollTop = 0;
+        }
+        if (global.sceneTransition) {
+          if (typeof global.sceneTransition.transitionFaqToHero === 'function') {
+            global.sceneTransition.transitionFaqToHero();
+          } else if (typeof global.sceneTransition.transitionTo === 'function') {
+            global.sceneTransition.transitionTo('hero');
+          }
         }
       };
 
       if (this.btnBackToTop) {
-        this.btnBackToTop.addEventListener('click', scrollToTop);
-      }
-
-      if (this.footerBrandLogo) {
-        this.footerBrandLogo.addEventListener('click', scrollToTop);
+        this.btnBackToTop.addEventListener('click', returnToHero);
       }
 
       // Links de navegação direta para qualquer dobra da Orbitpan

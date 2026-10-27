@@ -1,7 +1,7 @@
 /* ==========================================================================
    ORBITPAN — RETÍCULO AERONÁUTICO / CUSTOM CURSOR DESIGN SYSTEM
-   Experimento de Cursor Personalizado com Microinterações de Alta Fidelidade
-   Fácil reversão: basta remover ou desativar este arquivo e custom-cursor.js
+   [MODO UNIFICADO: O design da 3ª dobra padronizado em todas as dobras]
+   Fácil reversão: basta alternar window.orbitCursor.setMode('classic')
    ========================================================================== */
 
 /* Apenas ativa o cursor customizado em dispositivos desktop com mouse de precisão */
@@ -25,7 +25,7 @@
     pointer-events: none;
     z-index: 10001;
     transform: translate(-50%, -50%);
-    mix-blend-mode: difference;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.85), 0 0 4px rgba(0, 0, 0, 0.65);
     opacity: 0;
     transition: 
       opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
@@ -33,7 +33,7 @@
     will-change: transform, left, top;
   }
 
-  /* Anel Orbital Externo Fluido (Inversão Óptica / Difference Blend Mode) */
+  /* Anel Orbital Externo Fluido (Design Fixo e Consistente da 3ª Dobra) */
   .orbit-cursor-ring {
     position: fixed;
     top: 0;
@@ -41,11 +41,11 @@
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    border: 1.4px solid #ffffff;
+    border: 1.5px solid #ffffff;
     pointer-events: none;
     z-index: 10000;
     transform: translate(-50%, -50%);
-    mix-blend-mode: difference;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.75), inset 0 0 2px rgba(0, 0, 0, 0.35);
     opacity: 0;
     transition: 
       opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
@@ -80,37 +80,27 @@
   }
 
   /* 2. Microinteração de Clique / Mouse Down (Feedback Tátil Imediato) */
-  .orbit-cursor-ring.is-down {
-    width: 24px;
-    height: 24px;
+  .orbit-cursor-ring.is-down,
+  .orbit-cursor-ring.is-grabbing {
+    width: 26px;
+    height: 26px;
     border-width: 2px;
+    border-style: solid;
+    animation: none;
     transition-duration: 0.1s;
   }
 
   .orbit-cursor-dot.is-down {
-    transform: translate(-50%, -50%) scale(0.65);
+    transform: translate(-50%, -50%) scale(0.75);
     transition-duration: 0.1s;
   }
 
-  /* 3. Microinteração em Exploração 360° (Grab / Grabbing no Canvas WebGL) */
+  /* 3. Exploração 360° (Modo Unificado: Mantém o anel circular sólido idêntico à 3ª dobra) */
   .orbit-cursor-ring.is-grab {
-    border-style: dashed;
-    width: 38px;
-    height: 38px;
-    animation: orbitRingRotate 10s linear infinite;
-  }
-
-  .orbit-cursor-ring.is-grabbing {
     border-style: solid;
-    width: 26px;
-    height: 26px;
-    border-width: 2px;
+    width: 32px;
+    height: 32px;
     animation: none;
-  }
-
-  @keyframes orbitRingRotate {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to { transform: translate(-50%, -50%) rotate(360deg); }
   }
 
   /* 4. Modo de Texto / Inputs */
@@ -124,6 +114,41 @@
 
   .orbit-cursor-dot.is-text {
     opacity: 0;
+  }
+
+  /* ==========================================================================
+     [BACKUP DE REVERSÃO: MODO CLÁSSICO]
+     Ativado automaticamente se html tiver a classe .orbit-cursor-mode-classic
+     ou via comando window.orbitCursor.setMode('classic')
+     ========================================================================== */
+  html.orbit-cursor-mode-classic .orbit-cursor-dot {
+    mix-blend-mode: difference;
+    box-shadow: none;
+  }
+
+  html.orbit-cursor-mode-classic .orbit-cursor-ring {
+    mix-blend-mode: difference;
+    box-shadow: none;
+  }
+
+  html.orbit-cursor-mode-classic .orbit-cursor-ring.is-grab {
+    border-style: dashed;
+    width: 38px;
+    height: 38px;
+    animation: orbitRingRotateClassic 10s linear infinite;
+  }
+
+  html.orbit-cursor-mode-classic .orbit-cursor-ring.is-grabbing {
+    border-style: solid;
+    width: 26px;
+    height: 26px;
+    border-width: 2px;
+    animation: none;
+  }
+
+  @keyframes orbitRingRotateClassic {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
   }
 
 }

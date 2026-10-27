@@ -1,0 +1,385 @@
+/* ==========================================================================
+   ORBITPAN — EXPERIMENTO REVERSÍVEL: DOBRA DE MANIFESTO & PROPÓSITO
+   Dobra Editorial Minimalista de Alto Impacto (Inserida após a 3ª Dobra: Portfólio)
+   Inspirada em design editorial escuro de alta fidelidade & retículo aeronáutico
+   ========================================================================== */
+
+/* Container Principal da Dobra (Full Viewport Scene) */
+.orbit-statement {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  user-select: none;
+  background-color: var(--color-base, #06080c);
+  z-index: 5;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  filter: blur(38px) brightness(1.25);
+  transform: scale(0.94);
+  transform-origin: center center;
+  will-change: filter, opacity, transform;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: 
+    filter 1.6s cubic-bezier(0.43, 0.195, 0.02, 1),
+    opacity 1.5s cubic-bezier(0.43, 0.195, 0.02, 1),
+    transform 1.6s cubic-bezier(0.43, 0.195, 0.02, 1),
+    visibility 1.6s;
+}
+
+/* Estado Ativo: Nitidez Completa, Visibilidade Total e Escala Normal */
+.orbit-statement.is-active {
+  z-index: 30;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  filter: blur(0px) brightness(1);
+  transform: scale(1);
+}
+
+/* Estado de Saída ao Retornar */
+.orbit-statement.is-exiting {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  filter: blur(38px) brightness(1.25);
+  transform: scale(0.94);
+}
+
+/* ==========================================================================
+   CENOGRAFIA ATMOSFÉRICA DE FUNDO (PROFUNDIDADE ESCURA OBSIDIAN)
+   ========================================================================== */
+
+.orbit-statement__backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Aura Central Suave em Ciano Aeronáutico */
+.orbit-statement__glow-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(900px, 75vw);
+  height: min(600px, 60vh);
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(56, 189, 248, 0.07), transparent 72%);
+  filter: blur(70px);
+  pointer-events: none;
+}
+
+/* Vinheta de Borda para Foco Monumental */
+.orbit-statement__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(4, 6, 9, 0.88) 100%);
+  pointer-events: none;
+}
+
+/* Textura Subcelular de Precisão (Micro Grid Suave) */
+.orbit-statement__grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.035) 1px, transparent 0);
+  background-size: 40px 40px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   HEADER SUPERIOR (BARRA DE NAVEGAÇÃO & IDENTIDADE)
+   ========================================================================== */
+
+.orbit-statement__header {
+  position: relative;
+  z-index: 15;
+  width: 100%;
+  height: var(--header-height, 84px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--gutter-x, clamp(20px, 5.2vw, 100px));
+}
+
+/* Botão de Retorno à Dobra Anterior (Portfólio 3D) */
+.orbit-statement__back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(14, 18, 25, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border-subtle, rgba(255, 255, 255, 0.15));
+  padding: 10px 22px;
+  border-radius: 999px;
+  color: var(--color-text-primary, #ffffff);
+  font-family: var(--font-display, 'Oswald');
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.orbit-statement__back-btn svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.orbit-statement__back-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.45);
+  transform: translateX(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.orbit-statement__back-btn:hover svg {
+  transform: translateX(-3px);
+}
+
+/* Logotipo Orbitpan */
+.orbit-statement__header .orbit-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.orbit-statement__header .orbit-brand:hover {
+  opacity: 0.85;
+}
+
+/* ==========================================================================
+   CONTEÚDO CENTRAL: O MANIFESTO EDITORIAL
+   ========================================================================== */
+
+.orbit-statement__content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex: 1;
+  padding: 0 var(--gutter-x, clamp(20px, 5.2vw, 100px));
+  max-width: min(1200px, 94vw);
+  margin: 0 auto;
+}
+
+/* 1. Símbolo Circular Superior (Retículo Giroscópico Minimalista) */
+.orbit-statement__reticle {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 16px auto;
+  color: rgba(255, 255, 255, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.orbit-statement__reticle svg {
+  width: 100%;
+  height: 100%;
+  animation: orbitStatementSpin 30s linear infinite;
+}
+
+.orbit-statement__reticle-core {
+  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.85));
+  animation: orbitStatementPulse 3s ease-in-out infinite alternate;
+  transform-origin: 24px 24px;
+}
+
+@keyframes orbitStatementSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes orbitStatementPulse {
+  0% { transform: scale(0.9); opacity: 0.85; }
+  100% { transform: scale(1.18); opacity: 1; }
+}
+
+/* 2. Eyebrow Kicker Editorial ("— PROPÓSITO") */
+.orbit-statement__kicker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: clamp(22px, 3.4vh, 42px);
+}
+
+.orbit-statement__kicker-dash {
+  color: var(--color-accent-blue, #38bdf8);
+  font-weight: 700;
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.orbit-statement__kicker-text {
+  font-family: var(--font-display, 'Oswald');
+  font-size: clamp(0.72rem, 0.85vw, 0.85rem);
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(248, 250, 252, 0.72);
+}
+
+/* 3. Headline Principal (A Frase de Impacto) */
+.orbit-statement__headline {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 1.4vh, 18px);
+  text-wrap: balance;
+}
+
+/* Linha 1: "Transformamos espaços em" */
+.orbit-statement__line--lead {
+  font-family: var(--font-display, 'Oswald');
+  font-weight: 500;
+  font-size: clamp(1.9rem, 4.2vw, 3.9rem);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary, #f8fafc);
+  opacity: 0.95;
+}
+
+/* Linha 2: "experiências que, convertem e geram resultados." */
+.orbit-statement__line--accent {
+  font-family: var(--font-body, 'Avenir');
+  font-size: clamp(2.1rem, 4.6vw, 4.3rem);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+
+/* Destaque em Itálico Nobre com Gradiente Azul Ciano Aeronáutico (#38bdf8) */
+.orbit-statement__italic {
+  font-style: italic;
+  font-weight: 900;
+  background: linear-gradient(135deg, #ffffff 12%, #7dd3fc 60%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  filter: drop-shadow(0 0 28px rgba(56, 189, 248, 0.22));
+}
+
+/* ==========================================================================
+   RODAPÉ INFERIOR (AVANÇO PARA A PRÓXIMA DOBRA)
+   ========================================================================== */
+
+.orbit-statement__footer {
+  position: relative;
+  z-index: 15;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: clamp(22px, 3.6vh, 44px);
+}
+
+.orbit-statement__next-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(14, 18, 25, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border-subtle, rgba(255, 255, 255, 0.12));
+  padding: 12px 28px;
+  border-radius: 999px;
+  color: var(--color-text-primary, #ffffff);
+  font-family: var(--font-display, 'Oswald');
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.orbit-statement__next-btn:hover {
+  background: rgba(56, 189, 248, 0.12);
+  border-color: rgba(56, 189, 248, 0.4);
+  transform: translateY(3px);
+  box-shadow: 0 8px 26px rgba(56, 189, 248, 0.18);
+  color: #ffffff;
+}
+
+.orbit-statement__next-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  transition: transform 0.35s ease;
+}
+
+.orbit-statement__next-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.orbit-statement__next-btn:hover .orbit-statement__next-icon {
+  transform: translateY(3px);
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE (MOBILE & TABLET)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .orbit-statement__header {
+    height: 70px;
+  }
+
+  .orbit-statement__back-btn span {
+    font-size: 0.72rem;
+  }
+
+  .orbit-statement__back-btn {
+    padding: 8px 16px;
+  }
+
+  .orbit-statement__reticle {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 12px;
+  }
+
+  .orbit-statement__kicker {
+    margin-bottom: 18px;
+  }
+
+  .orbit-statement__line--lead {
+    font-size: clamp(1.6rem, 6.2vw, 2.4rem);
+  }
+
+  .orbit-statement__line--accent {
+    font-size: clamp(1.75rem, 6.8vw, 2.6rem);
+  }
+
+  .orbit-statement__next-btn {
+    padding: 10px 22px;
+    font-size: 0.75rem;
+  }
+}

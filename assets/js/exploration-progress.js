@@ -132,21 +132,29 @@
       return;
     }
 
-    // 3. Dobra 3: Portfólio (35% a 65%)
+    // 3. Dobra 3: Portfólio (35% a 62%)
     if (scene === 'portfolio') {
       const portfolioSec = document.getElementById('portfolio');
       let scrollRatio = 0;
       if (portfolioSec && portfolioSec.scrollHeight > portfolioSec.clientHeight) {
         scrollRatio = portfolioSec.scrollTop / (portfolioSec.scrollHeight - portfolioSec.clientHeight);
       }
-      const progress = 35 + (Math.max(0, Math.min(1, scrollRatio)) * 30);
+      const hasManifesto = !!document.getElementById('manifesto');
+      const maxRange = hasManifesto ? 25 : 30;
+      const progress = 35 + (Math.max(0, Math.min(1, scrollRatio)) * maxRange);
       applyProgress(progress);
       return;
     }
 
-    // 4. Dobra 4: Depoimentos (65% a 80%)
+    // [EXPERIMENTO REVERSÍVEL] Dobra de Manifesto & Propósito (62% a 74%)
+    if (scene === 'statement' || scene === 'manifesto') {
+      applyProgress(68);
+      return;
+    }
+
+    // 4. Dobra 4: Depoimentos (74% a 82%)
     if (scene === 'testimonials') {
-      applyProgress(72);
+      applyProgress(78);
       return;
     }
 
@@ -190,6 +198,11 @@
         'transitionToPortfolio',
         'transitionPortfolioToExplorer',
         'transitionPortfolioToTestimonials',
+        'transitionPortfolioToStatement',
+        'transitionStatementToPortfolio',
+        'transitionStatementToTestimonials',
+        'transitionTestimonialsToStatement',
+        'transitionStatementToHero',
         'transitionTestimonialsToPortfolio',
         'transitionTestimonialsToHero',
         'transitionTestimonialsToFaq',

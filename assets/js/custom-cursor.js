@@ -24,6 +24,7 @@
   let ringEl = null;
   let isEnabled = true;
   let isVisible = false;
+  let currentMode = 'unified'; // 'unified' (padrão 3ª dobra) | 'classic'
 
   // Coordenadas alvo (mouse real)
   let mouseX = -100;
@@ -226,6 +227,21 @@
   global.orbitCursor = {
     enable: enable,
     disable: disable,
+    setMode: function (mode) {
+      if (mode === 'classic') {
+        currentMode = 'classic';
+        document.documentElement.classList.add('orbit-cursor-mode-classic');
+        console.log('[OrbitCursor] Modo Clássico (original) ativado.');
+      } else {
+        currentMode = 'unified';
+        document.documentElement.classList.remove('orbit-cursor-mode-classic');
+        console.log('[OrbitCursor] Modo Unificado (padrão 3ª dobra) ativado.');
+      }
+      return currentMode;
+    },
+    getMode: function () {
+      return currentMode;
+    },
     toggle: function (force) {
       const state = typeof force === 'boolean' ? force : !isEnabled;
       if (state) enable();
